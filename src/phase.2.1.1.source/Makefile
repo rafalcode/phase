@@ -12,7 +12,8 @@ INCLUDE = -I. -I..
 #CFLAGS = -O2  $(INCLUDE)
 #CFLAGS = -g -a -O2 -pg -DNDEBUG $(INCLUDE)
 
-DEFAULTFLAGS =  -O2 -DBIGDATASETS $(INCLUDE)
+# DEFAULTFLAGS =  -O2 -DBIGDATASETS $(INCLUDE)
+DEFAULTFLAGS = -Wall -DBIGDATASETS $(INCLUDE)
 #DEFAULTFLAGS =  -g -O2 -DBIGDATASETS -DDMALLOC $(INCLUDE)
 #DEFAULTFLAGS =  -g -pg -O2 -DBIGDATASETS $(INCLUDE)
 BIGFLAGS = -O2 -DBIGDATASETS $(INCLUDE)
@@ -37,6 +38,7 @@ HDR = indnode.hpp classpop.hpp constants.hpp arrayQ.hpp utility.hpp arrayFF.hpp 
 
 PHASE : $(OBJ)
 	$(CXX) $(DEFAULTFLAGS) -I. -I.. $(OBJ) -o $@  $(LDFLAGS)
+
 big : clean
 	@$(MAKE) PHASE.big "CFLAGS=$(BIGFLAGS)"
 small : clean

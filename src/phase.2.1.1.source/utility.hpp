@@ -10,11 +10,7 @@
 //#include "crand/ranlib.h"
 using namespace::std;
 
-int proc_args ( int, char **, 
-		std::map<string, string> &, 
-		std::map<string, int> &, 
-		std::map<string, double> &,
-	        int &, int &, int &);
+int proc_args ( int, char **, std::map<string, string> &, std::map<string, int> &, std::map<string, double> &, int &, int &, int &);
 
 extern "C" void init_genrand(unsigned long s);
 extern "C" double genrand_real2(void);

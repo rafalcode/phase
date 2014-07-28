@@ -32,16 +32,13 @@
 #include <cstdlib>
 #include <cassert>
 #include <iostream>
-#include <strstream>
+#include <sstream>
 
 namespace TNT
 {
 
-template <class T>
-class Vector 
+template<class T> class Vector 
 {
-
-
   public:
 
     typedef Subscript   size_type;
@@ -184,7 +181,7 @@ class Vector
     Vector(Subscript N, char *s) :  v_(0), vm1_(0), n_(0)
     {
         initialize(N);
-        std::istrstream ins(s);
+        std::istringstream ins(s);
 
         Subscript i;
 
@@ -274,26 +271,16 @@ class Vector
     {
 #ifdef TNT_BOUNDS_CHECK
         assert(0<=i);
-
-
-
-
-
-
         assert(i < n_) ;
 #endif
         return v_[i]; 
     }
 
-
-
 };
 
 
 /* ***************************  I/O  ********************************/
-
-template <class T>
-std::ostream& operator<<(std::ostream &s, const Vector<T> &A)
+template<class T> std::ostream& operator<<(std::ostream &s, const Vector<T> &A)
 {
     Subscript N=A.dim();
 
@@ -306,8 +293,7 @@ std::ostream& operator<<(std::ostream &s, const Vector<T> &A)
     return s;
 }
 
-template <class T>
-std::istream & operator>>(std::istream &s, Vector<T> &A)
+template<class T> std::istream & operator>>(std::istream &s, Vector<T> &A)
 {
 
     Subscript N;
@@ -315,14 +301,10 @@ std::istream & operator>>(std::istream &s, Vector<T> &A)
     s >> N;
 
     if ( !(N == A.size() ))
-    {
         A.newsize(N);
-    }
 
-
-    for (Subscript i=0; i<N; i++)
+    for(Subscript i=0; i<N; i++)
             s >>  A[i];
-
 
     return s;
 }

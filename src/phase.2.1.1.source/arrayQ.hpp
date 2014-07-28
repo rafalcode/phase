@@ -14,10 +14,10 @@
 using namespace::std;
 
 class ArrayQ {
-    double **** array;
+    double ****array;
     int nchr;             // Number of chromosomes, range of 2nd index
     int nalleles; // Number of alleles
-                  // range of the 4th and 5th indices
+    // range of the 4th and 5th indices
     // Priave copy constructor, this disable pass by value.
     // We only need one Q anyway.
 
@@ -26,115 +26,86 @@ class ArrayQ {
     int check_bound (int, int, int, int) const;
     // Calculate Q
     void CalcQ ( double theta, double delta );    
-public:
-  ArrayQ ();  
-  ArrayQ (const ArrayQ &); // copy constructor
-  const ArrayQ & operator= ( const ArrayQ & );
+    public:
+    ArrayQ ();  
+    ArrayQ (const ArrayQ &); // copy constructor
+    const ArrayQ & operator= ( const ArrayQ & );
 
-  ArrayQ ( char LociType,          // Loci Type
-             int NInd,                 // Number of Individuals
-             double theta ,
-	     double delta);
-    
-  ~ArrayQ ();
-  // Return const reference so that changine the elements this way
-  // is not allowed.
-  const double & operator () (int j, int k, int l, int m)
+    ArrayQ ( char LociType,          // Loci Type
+            int NInd,                 // Number of Individuals
+            double theta ,
+            double delta);
+
+    ~ArrayQ ();
+    // Return const reference so that changine the elements this way
+    // is not allowed.
+    const double & operator () (int j, int k, int l, int m)
         const {
 #ifdef CHECK_BOUNDARY
-      assert ( check_bound (j, k, l, m) == 0 );
+            assert ( check_bound (j, k, l, m) == 0 );
 #endif
-      return array[j][k][l][m];
-    }
+            return array[j][k][l][m];
+        }
 };
 
 // prob of moving from copying nfrom,cfrom to nt,cto
 // when there are nc chromosomes
-inline double TransitionProb ( int nc,
-                               int nfrom,
-                               int cfrom,
-                               int nto,
-                               int cto,
-                               double rho )
+inline double TransitionProb ( int nc, int nfrom, int cfrom, int nto, int cto, double rho )
 {    
     return (1.0 / nc ) * ( 1 - exp( -rho/nc ) )+
         ( nfrom == nto ) * ( cfrom == cto ) * exp( -rho/nc );
 }
 
-inline double TransitionProb ( int nc,
-                               int nfrom,
-                               int cfrom,
-			       int tfrom,
-                               int nto,
-                               int cto,
-			       int tto,
-                               double rho )
+inline double TransitionProb ( int nc, int nfrom, int cfrom, int tfrom, int nto, int cto, int tto, double rho )
 {    
     return (WEIGHTS[tto] / (SS*nc) ) * ( 1 - exp( -rho/nc ) )+
         ( nfrom == nto ) * ( cfrom == cto ) * ( tfrom == tto ) * exp( -rho/nc );
 }
 
 
-inline double TransitionProb ( int nc,
-			       int nfrom,
-                               int cfrom,
-			       int tfrom,
-                               int nto,
-                               int cto,
-			       int tto,
-                               double rho,
-			       double expsave )
+inline double TransitionProb ( int nc, int nfrom, int cfrom, int tfrom, int nto, int cto, int tto, double rho, double expsave )
 {    
     return (WEIGHTS[tto] / (SS*nc) ) * ( 1 - expsave )+
         ( nfrom == nto ) * ( cfrom == cto ) * ( tfrom == tto ) * expsave;
 }
 
-
-
-
-/** Probability of observing an allelic type given it is copied from 
-    another allele allele.
+/** Probability of observing an allelic type given it is copied from another allele allele.
 */
-inline double PrHitTarg ( int r, int n, int t, int from, int to, 
-                          const vector<ArrayQ *> & Q ) 
+inline double PrHitTarg ( int r, int n, int t, int from, int to, const vector<ArrayQ *> & Q ) 
 {
-  //cout << "r=" << r << ", n=" << n << ", t=" << t << ", from=" << from << ", to=" << to << ", Q= " << (*Q[r])(n, t, from, to);
+    //cout << "r=" << r << ", n=" << n << ", t=" << t << ", from=" << from << ", to=" << to << ", Q= " << (*Q[r])(n, t, from, to);
     return (*Q[r])(n, t, from, to);
 
 }
 
 inline double PrHitTarg ( int n, int from, int to, double theta ) 
 {
-  if(from==to)
-    return (theta/(n+theta)*0.5+(n/(n+theta)));
-  else
-    return theta/(n+theta)*0.5;
-
+    if(from==to)
+        return (theta/(n+theta)*0.5+(n/(n+theta)));
+    else
+        return theta/(n+theta)*0.5;
 }
-inline double FuzzyPrHitTarg ( int r, int n, int t, float from, int to, 
-                          const vector<ArrayQ *> & Q ) 
+
+inline double FuzzyPrHitTarg ( int r, int n, int t, float from, int to, const vector<ArrayQ *> & Q ) 
 {
-  //cout << "r=" << r << ", n=" << n << ", t=" << t << ", from=" << from << ", to=" << to << ", Q= " << (*Q[r])(n, t, from, to);
+    //cout << "r=" << r << ", n=" << n << ", t=" << t << ", from=" << from << ", to=" << to << ", Q= " << (*Q[r])(n, t, from, to);
     return from * PrHitTarg(r,n,t,1,to,Q) + (1-from) * PrHitTarg(r,n,t,0,to,Q);
 
 }
 
 inline double FuzzyPrHitTarg ( int n, float from, int to, double theta ) 
 {
-  return  from * PrHitTarg(n,1,to,theta) + (1-from) * PrHitTarg(n,0,to,theta);
+    return  from * PrHitTarg(n,1,to,theta) + (1-from) * PrHitTarg(n,0,to,theta);
 }
 
 inline double PrHitTargNoQuad ( int n, int from, int to, double theta ) 
 {
-  if(from==to)
-    return (theta/(n+theta)*0.5+(n/(n+theta)));
-  else
-    return theta/(n+theta)*0.5;
+    if(from==to)
+        return (theta/(n+theta)*0.5+(n/(n+theta)));
+    else
+        return theta/(n+theta)*0.5;
 
 }
-
-
-
 
 #endif // ARRAY_Q_H
 

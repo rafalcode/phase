@@ -15,7 +15,6 @@
 
 using namespace std;
 
-
 // default constructor
 ArrayQ::ArrayQ ():
   nchr(0),
