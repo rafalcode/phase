@@ -89,7 +89,7 @@ public:
     void input_orig_allele ( istream &, char locus_type,
                       int chr, int locus);
     // Return number of missing alleles at locus
-    int n_missing ( int locus ) const;
+    int n_missing (unsigned locus ) const;
     const int NMissingLoci () const; // inline
 
     // Get haplotype
@@ -115,7 +115,7 @@ public:
    const int nmissing(int) const;
     
   char get_locus_type( int locus) const; // inline
-    int              get_unknown_pos ( int count ) const;
+  int get_unknown_pos (unsigned count) const;
     std::vector<int> get_phase ( ) const;
     int              get_phase ( int locus ) const;
     void        print_phase ( std::ostream &, bool = false ) const;
@@ -223,7 +223,7 @@ inline void CIndividual::output_overall_correct_prob(ostream & ostr){
 
 inline void CIndividual::SaveCurrentState(){
   for(int chr=0;chr<2;chr++){
-    for(int r=0; r<phase.size();r++){
+    for(unsigned r=0; r<phase.size();r++){
       saved_hap[chr][r] = get_haplotype(chr,r);
     }
   }
@@ -231,7 +231,7 @@ inline void CIndividual::SaveCurrentState(){
 
 inline void CIndividual::RestoreSavedState(){
   for(int chr=0;chr<2;chr++){
-    for(int r=0; r<phase.size();r++){
+    for(unsigned r=0; r<phase.size();r++){
       update_haplotype(chr,r,saved_hap[chr][r]);
     }
   }
@@ -301,9 +301,9 @@ inline void CIndividual::update_haplotype ( int chr, int locus, int allele )
 
 inline void CIndividual::update_haplotype ( int chr, const Haplotype & h) 
 { 
-  int Nloci = phase.size(); 
+  unsigned Nloci = phase.size(); 
   
-  for(int locus = 0; locus < Nloci; locus++){
+  for(unsigned locus = 0; locus < Nloci; locus++){
     if((phase[locus] != 0) && (phase[locus]!=1)){
       cerr << "Error: phase is not right at locus " << (locus+1) << endl;
       cout << phase[locus] << endl;
@@ -320,7 +320,7 @@ inline void CIndividual::update_haplotype ( int chr, const Haplotype & h)
 inline void CIndividual::update_haplotypes ( const Haplotype & h0, const Haplotype & h1) 
 { 
   bool consistentwithknown = true;
-  int Nloci = phase.size();
+  unsigned Nloci = phase.size();
   for(vector<int>::iterator u = known.begin(); u!=known.end(); u++){
     if( ((h0.get_allele(*u) != orig_phenotype[0][*u]) && (orig_phenotype[0][*u]!=MISSMS)) || 
 	((h1.get_allele(*u) != orig_phenotype[1][*u]) && (orig_phenotype[1][*u]!=MISSMS)) ){
@@ -331,7 +331,7 @@ inline void CIndividual::update_haplotypes ( const Haplotype & h0, const Haploty
   // cout << "Here!" << endl;
   // cout << "consistent with known = " << consistentwithknown << endl;
   if(consistentwithknown){ // set chr0 to be h0 and chr1 to be h1
-    for(int locus = 0; locus < Nloci; locus++){
+    for(unsigned locus = 0; locus < Nloci; locus++){
       // cout << "locus = " << locus << endl;
       // cout << "phase = " << phase[locus] << endl;
       // cout << "allele0 = " << h0.get_allele(locus) << endl;
@@ -342,7 +342,7 @@ inline void CIndividual::update_haplotypes ( const Haplotype & h0, const Haploty
     }
   }
   else { // must switch to be consistent with known (chr0 = h1, chr1 = h0)
-    for(int locus = 0; locus < Nloci; locus++){
+    for(unsigned locus = 0; locus < Nloci; locus++){
       phenotype[phase[locus]].set_allele(locus,h1.get_allele(locus));
       phenotype[1-phase[locus]].set_allele(locus,h0.get_allele(locus));
     }
@@ -363,10 +363,10 @@ inline int CIndividual::get_nloci () const
   return phase.size();
 }
 
-inline int CIndividual::n_missing ( int locus ) const 
+inline int CIndividual::n_missing(unsigned locus) const 
 { 
     assert ( locus < missing.size() );
-    assert ( locus >= 0 );
+    // assert ( locus >= 0 );
     return missing[locus]; 
 }
 
@@ -385,7 +385,7 @@ inline std::vector<int> CIndividual::get_notmissing_list ( )
 
 
 // Get list of unknown positions
-inline const std::vector<int> & CIndividual::get_unknown_pos ( ) const 
+inline const std::vector<int> & CIndividual::get_unknown_pos() const 
 { 
     return unknown; 
 }
@@ -418,14 +418,12 @@ inline bool CIndividual::is_unknown (int locus) const
 }
 
 
-inline int CIndividual::get_unknown_pos ( int count ) const 
+inline int CIndividual::get_unknown_pos(unsigned count) const 
 {
     assert ( count < unknown.size() );
     assert ( count >= 0 );
     return unknown[count];
 }
-
-
 
 inline std::vector<int> CIndividual::get_phase ( ) const 
 { 
@@ -444,7 +442,7 @@ inline void CIndividual::set_phase (int locus, int ph)
 
 inline void CIndividual::flip_phase () 
 {
-  for(int locus=0; locus < phase.size(); locus++)
+  for(unsigned locus=0; locus < phase.size(); locus++)
     phase[locus] = 1-phase[locus];
 }
 

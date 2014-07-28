@@ -141,12 +141,12 @@ int main ( int argc, char** argv)
         if(cmdoptions["inputdelta"]==1) {
 
             if(filenames["deltaFile"] == "1") {
-                for(int r=0; r<vecDelta.size(); r++)
+                for(unsigned r=0; r<vecDelta.size(); r++)
                     vecDelta[r] = 1;
             } else {
                 deltaFile.open (filenames["deltaFile"].c_str());
                 assure ( deltaFile, filenames["deltaFile"] );
-                for(int r=0; r<vecDelta.size(); r++)
+                for(unsigned r=0; r<vecDelta.size(); r++)
                     deltaFile >> vecDelta[r];
             }
         }

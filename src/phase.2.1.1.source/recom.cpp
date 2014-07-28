@@ -29,13 +29,11 @@ void ClassPop::resolve_phase_R ( double thetainit, double totalrho,
     if ( thetainit <= 0.0 ) calc_theta ();
         
     vector <double> rho;
-    int Nloci = loci_type.size();
+    unsigned Nloci = loci_type.size();
 
     //cout << "Computing rho" << endl;
-    for(int r=0; r<(Nloci-1); r++){
+    for(unsigned r=0; r<(Nloci-1); r++)
       rho.push_back(totalrho * (position[r+1]-position[r]));
-    }
-
    
  // {{{ Burn-in
     
@@ -356,7 +354,7 @@ double ClassPop::update_R (vector<double> & rho, double theta, double delta, dou
 //
 void ClassPop::ConditionalDiploidSim(int n, double theta, double delta, double temperature,vector<int> * CopiedInd, vector<int> * CopiedChr, vector<int> * CopiedTime)
 {
-  for(int r=0; r < loci_type.size(); r++){
+  for(unsigned r=0; r < loci_type.size(); r++){
     int observedallele0 = pop[n].get_orig_allele(0,r);
     int observedallele1 = pop[n].get_orig_allele(1,r);
    
@@ -488,7 +486,7 @@ double ClassPop::FastForwardsAlg ( int n, int c, double theta, double delta, vec
 
   double logsum = log(sum);// log of sum of final FF[r] (if hadn't been normalised)
 
-  for(int r = 1; r < loci_type.size(); ++r) {
+  for(unsigned r = 1; r < loci_type.size(); ++r) {
     ptr=0;
     int observedallele0 = pop[n].get_orig_allele(0,r);
     int observedallele1 = pop[n].get_orig_allele(1,r);
@@ -553,7 +551,7 @@ void ClassPop::FastBackwardsAlg ( int n, int c, double theta, double delta, vect
 {
   int nchr = 2*Nind - 1;
 
-  for(int r = loci_type.size()-1; r >= 0; r--) {
+  for(unsigned r = loci_type.size()-1; r >= 0; r--) {
     // simulate n0 and c0 from FF[r]
 
 
@@ -773,7 +771,7 @@ double ClassPop::DiploidForwardsAlg (vector<vector<double> > & FF,
 
   logprob += log(Sum[whichsum]);
   
-  for(int r = 1; r < loci_type.size(); ++r) {
+  for(unsigned r = 1; r < loci_type.size(); ++r) {
    
     // compute the sums for F(r-1) over (n0,c0,t0), (n1,c1,t1), and both
 	
@@ -893,7 +891,7 @@ void ClassPop::DiploidBackwardsAlg ( int n, double theta, double delta, vector<v
 {
   int nchr = Nind + Nind - 2;
 
-  for(int r = loci_type.size()-1; r >= 0; r--) {
+  for(unsigned r = loci_type.size()-1; r >= 0; r--) {
     // POTENTIAL CHANGING OF FF by a "temperature", for SA
     //     if(temperature !=1){
     //        double ftemperature;

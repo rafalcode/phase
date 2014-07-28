@@ -67,7 +67,7 @@ Haplotype const & Haplotype::operator=(Haplotype const & h2)
 
 void Haplotype::print_haplotype(ostream & ostr, const vector<int> * coding) const
 {
-  for(int locus =0; locus<h.size(); locus++){
+  for(unsigned locus =0; locus<h.size(); locus++){
     if(locus_type[locus]=='M'){
       if(locus>0)
 	if(locus_type[locus-1] == 'S')
@@ -80,10 +80,11 @@ void Haplotype::print_haplotype(ostream & ostr, const vector<int> * coding) cons
 }
 
 
-int NDiff(Haplotype h1, Haplotype h2){ // finds number of diffs
+int NDiff(Haplotype h1, Haplotype h2) // finds number of diffs
+{
   int d=0;
-  for(int l = 0; l < h1.get_nloci(); l++){
+  for(int l = 0; l < h1.get_nloci(); l++)
     d+= h1.get_allele(l) != h2.get_allele(l); 
-  }
+
   return d;
 }

@@ -102,7 +102,7 @@ void ArrayDiploidDiffProb::CalcDiploidDiffProb ( const vector<ArrayQ *> & Q, con
   
   cout << "Computing DiploidDiffProb" << endl;
 
-  int firstSNP= 0; //first SNP locus;
+  unsigned firstSNP= 0; //first SNP locus;
   while((LociType[firstSNP]!='S') && (firstSNP<(LociType.size()-1)))
     firstSNP++;
  

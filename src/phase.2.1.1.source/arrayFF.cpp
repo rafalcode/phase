@@ -159,7 +159,7 @@ void ArrayFF::compute ( int id,
       // compute number of differences of each type
       diff[0]=diff[1]=diff[2]=diff[3]=0;
       if(n1!=id){
-	for (int u = 0; u < num_unknown; ++u) {	
+	for (unsigned u = 0; u < num_unknown; ++u) {	
 	  r=pop[id].get_unknown_pos(u);
 	  if((loci_type[r] == 'S') && (pop[id].n_missing(r)==0)){
 	  from0 = pop[n0].get_haplotype(c0, r);
@@ -192,7 +192,7 @@ void ArrayFF::compute ( int id,
 	    DiploidDiffProb(Nindminus1,t0,t1,diff[2],2) *
 	    DiploidDiffProb(Nindminus1,t0,t1,diff[3],3);
 	    
-	  for (int u = 0; u < num_unknown; ++u) {	
+	  for (unsigned u = 0; u < num_unknown; ++u) {	
 	    r=pop[id].get_unknown_pos(u);
      
 	    // Number of missing alleles at r

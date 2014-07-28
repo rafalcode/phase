@@ -220,7 +220,7 @@ inline void HapList::NormaliseSqPseudoCounts(double norm){
 
 inline void HapList::NormaliseGroupFreqs(){
   
-  for(int g=0; g< haplist.begin()->second.GroupFreq.size(); g++){
+  for(unsigned g=0; g< haplist.begin()->second.GroupFreq.size(); g++){
     double norm = 0;
     for(ListType::iterator h = haplist.begin(); h!=haplist.end(); h++)
       norm += h->second.GroupFreq[g];

@@ -1,0 +1,20 @@
+File: test/p2r40m05.20.SPL.res
+Number of datasets = 100
+       SSD       NQXL        Pos Switch Err    Shin SE Shin,nomiss
+     0.476      0.396      0.366      0.218      0.482      0.482
+File: test/p2r40m05.40.SPL.res
+Number of datasets = 100
+       SSD       NQXL        Pos Switch Err    Shin SE Shin,nomiss
+     0.351      0.296      0.252      0.152      0.358      0.358
+File: test/p2r40m05.60.SPL.res
+Number of datasets = 100
+       SSD       NQXL        Pos Switch Err    Shin SE Shin,nomiss
+     0.285      0.233      0.210      0.115      0.286      0.286
+File: test/p2r40m05.80.SPL.res
+Number of datasets = 100
+       SSD       NQXL        Pos Switch Err    Shin SE Shin,nomiss
+     0.239      0.194      0.173      0.091      0.237      0.237
+File: test/p2r40m05.100.SPL.res
+Number of datasets = 100
+       SSD       NQXL        Pos Switch Err    Shin SE Shin,nomiss
+     0.217      0.180      0.152      0.085      0.217      0.217

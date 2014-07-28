@@ -1407,7 +1407,7 @@ double HapList::FDLSProb(const Haplotype & h, const vector<ArrayQ *> & Q, int nc
       vector<double> TransProb = vector<double>(vecRho.size());
      
       int Sforcorrection = Nloci;
-      for(int locus=0; locus<TransProb.size(); locus++){
+      for(unsigned locus=0; locus<TransProb.size(); locus++){
 	TransProb[locus] = 1 - exp(-( correction(Nforcorrection, Sforcorrection, vecRho[locus]) * vecRho[locus]/nchr));
       }
 
@@ -1467,7 +1467,7 @@ double HapList::ForwardsAlgorithm(const Haplotype & h, const vector<ArrayQ *> & 
   vector<double> TransProb = vector<double>(Nloci - 1);
   int Sforcorrection = Nloci;
   
-  for(int locus=0; locus<TransProb.size(); locus++)
+  for(unsigned locus=0; locus<TransProb.size(); locus++)
     TransProb[locus] = 1 - exp(-( correction(Nforcorrection, Sforcorrection, vecRho[locus]) * vecRho[locus]/nchr));
   
   int firstlocus = 0;
@@ -1552,7 +1552,7 @@ void HapList::BackwardsAlgorithm(const Haplotype & h, int nchr, vector<double> &
 {
   int Nloci = h.Nloci();
   vector<double> TransProb = vector<double>(Nloci-1);
-  for(int locus = 0; locus < TransProb.size(); locus++){ 
+  for(unsigned locus = 0; locus < TransProb.size(); locus++){ 
     TransProb[locus] = 1 - exp(-(vecRho[locus]/nchr));
   }
 
@@ -1750,7 +1750,7 @@ double HapList::FuzzyForwardsAlgorithm(const Haplotype & h, const vector<ArrayQ 
   vector<double> TransProb = vector<double>(Nloci - 1);
   int Sforcorrection = Nloci;
   
-  for(int locus=0; locus<TransProb.size(); locus++)
+  for(unsigned locus=0; locus<TransProb.size(); locus++)
     TransProb[locus] = 1 - exp(-( correction(Nforcorrection, Sforcorrection, vecRho[locus]) * vecRho[locus]/nchr));
   
   int firstlocus = 0;

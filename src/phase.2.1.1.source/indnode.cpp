@@ -39,22 +39,20 @@ CIndividual::CIndividual ( string loci_type ) :
 { 
   NIND ++;
 
-  
-
 #if DEBUG == 5
     cout << "Constructor called ... ";
     cout.flush();
 #endif // DEBUG
-    int nloci = loci_type.size();
+    unsigned nloci = loci_type.size();
     //cout << "Creating Ind, nloci = " << nloci << endl;
     for(int c=0; c < 2; c++){
-      for(int locus = 0; locus < nloci; locus++){
+      for(unsigned locus = 0; locus < nloci; locus++){
 	int n_allele = (loci_type[locus] == 'S' ) ? 2 : KMAX;
 	AlleleCount[c][locus] = vector<float> (n_allele,0.0);
       }
     }
        
-    for (int i = 0; i < nloci; ++i) {
+    for (unsigned i = 0; i < nloci; ++i) {
       phenotype[0].set_allele(i,MISSMS);
       phenotype[1].set_allele(i,MISSMS);
       orig_phenotype[0][i] = MISSMS;
@@ -331,7 +329,7 @@ void CIndividual::print_id ( ostream & ostr) const
 Haplotype CIndividual::get_haplotype( int c ) const
 {
   Haplotype haplo (phenotype[0].get_locus_type());
-  for (int locus = 0; locus < phase.size(); ++locus) {
+  for (unsigned locus = 0; locus < phase.size(); ++locus) {
     haplo.set_allele(locus, get_haplotype(c, locus));
   }
   return haplo;
@@ -362,20 +360,20 @@ int CIndividual::read_orig_phenotypes ( istream & istr,
     switch ( format ) {
     case 0:                  // 2 multilocus phenotypes on two lines
         for ( int chr = 0; chr < 2; ++chr ) {
-            for ( int locus = 0; locus < loci_type.size(); ++locus) {
+            for (unsigned locus = 0; locus < loci_type.size(); ++locus) {
                 input_orig_allele ( istr, loci_type[locus], chr, locus );
             }
         }
         break;
     case 1:                  // locus by locus phenotypes
-        for ( int locus = 0; locus < loci_type.size(); ++locus ) {
+        for (unsigned locus = 0; locus < loci_type.size(); ++locus ) {
             for ( int chr = 0; chr < 2; ++chr ) {
                 input_orig_allele ( istr, loci_type[locus], chr, locus );	
             }
         }
         break;
     case 2: // locus by locus phenotypes, with one char for each, and with hets indicated by H
-      for ( int locus = 0; locus < loci_type.size(); ++locus ) {	
+      for (unsigned locus = 0; locus < loci_type.size(); ++locus ) {	
 	if(loci_type[locus] == 'M'){
 	  cerr << "Error: format 2 not valid for data containing multiallelic markers" << endl;
 	  exit(1);
@@ -439,7 +437,7 @@ void CIndividual::print_phenotypes ( ostream & ostr,
                                      const vector<int> * coding ) const
 {    
     for (int chr = 0; chr < 2; ++chr) {
-        for (int locus = 0; locus < loci_type.size(); ++locus ) {
+        for (unsigned locus = 0; locus < loci_type.size(); ++locus ) {
             int allele = get_allele ( chr, locus );       
             if ( loci_type[locus] == 'S' ) {
                 assert ( allele == 0 || allele == 1 );
@@ -457,7 +455,7 @@ void CIndividual::print_phenotypes ( ostream & ostr,
 int CIndividual::BestAllele(int chr,int locus) const
 {
   int best = 0;
-  for(int j=1; j<AlleleCount[chr][locus].size(); j++){
+  for(unsigned j=1; j<AlleleCount[chr][locus].size(); j++){
     if(AlleleCount[chr][locus][j]>AlleleCount[chr][locus][best])
       best = j;
   }
@@ -467,7 +465,7 @@ int CIndividual::BestAllele(int chr,int locus) const
 double CIndividual::BestAlleleProb(int chr,int locus) const
 {
   double sum=0;
-  for(int j=0; j<AlleleCount[chr][locus].size(); j++){
+  for(unsigned j=0; j<AlleleCount[chr][locus].size(); j++){
     sum += AlleleCount[chr][locus][j];
   }
   return AlleleCount[chr][locus][BestAllele(chr,locus)] / sum;
@@ -503,7 +501,7 @@ int CIndividual::BestHaplotype(int chr, int locus) const
 Haplotype CIndividual::BestHaplotype(int chr) const
 {
   Haplotype haplo(phenotype[0].get_locus_type());
-  for (int locus = 0; locus < phase.size(); ++locus) {
+  for (unsigned locus = 0; locus < phase.size(); ++locus) {
     int bestphase = BestPhase(locus);
     if(bestphase == 0)
       haplo.set_allele(locus, BestAllele(chr, locus));
@@ -597,7 +595,7 @@ void CIndividual::print_haplotype ( int chr, ostream & ostr,
                                      bool PrintKnownPhase, bool PrintMissing, bool PrintBestGuess, double PhaseThreshold, double AlleleThreshold ) const
 {    
   
-  for (int locus = 0; locus < loci_type.size(); ++locus ) 
+  for (unsigned locus = 0; locus < loci_type.size(); ++locus ) 
     print_allele(ostr, locus, chr, loci_type, coding, PrintKnownPhase, PrintMissing, PrintBestGuess, PhaseThreshold, AlleleThreshold);
 }
 
@@ -613,10 +611,9 @@ void CIndividual::print_haplotypes ( ostream & ostr,
       }
 }
 
-void CIndividual::print_phase ( ostream & ostr,
-                                bool bfPrintAll ) const 
+void CIndividual::print_phase ( ostream & ostr, bool bfPrintAll ) const 
 {
-    for (int r = 0; r < phase.size(); ++r) {
+    for (unsigned r = 0; r < phase.size(); ++r) {
         if ( bfPrintAll ||
 	     ( is_unknown(r) && n_missing(r) < 2 ) ) {
 	  ostr << phase[r];
@@ -629,7 +626,7 @@ void CIndividual::print_phase ( ostream & ostr,
 void CIndividual::print_phase_prob ( ostream & ostr,
                                 bool bfPrintAll ) const 
 {
-    for (int r = 0; r < phase.size(); ++r) {
+    for (unsigned r = 0; r < phase.size(); ++r) {
         if ( bfPrintAll ||
                 ( is_unknown(r)
                   && n_missing(r) < 2 ) ) {
@@ -649,7 +646,7 @@ int CIndividual::initialize ( int knowninfo, istream & istr_known, int initmetho
     char tempchar;
     int temp;
 
-    for (int locus = 0; locus < phase.size(); ++locus) {
+    for (unsigned locus = 0; locus < phase.size(); ++locus) {
         if ( orig_phenotype[0][locus] == MISSMS &&
              orig_phenotype[1][locus] == MISSMS ) {
             // Missing two alleles
@@ -707,7 +704,7 @@ int CIndividual::initialize ( int knowninfo, istream & istr_known, int initmetho
       unknown.clear();
       known.clear();
       
-      for (int locus = 0; locus < phase.size(); ++locus) {
+      for (unsigned locus = 0; locus < phase.size(); ++locus) {
 	if(knowninfo == 999)
 	  tempchar = '0';
 	else
@@ -781,7 +778,7 @@ int CIndividual::initialize ( int knowninfo, istream & istr_known, int initmetho
       break;
 
     case 1: // Use phase in inputfile as starting point
-      for (int locus = 0; locus < phase.size(); ++locus) {
+      for (unsigned locus = 0; locus < phase.size(); ++locus) {
 	istr_init >> tempchar;
 	phase[locus] = tempchar - (int) '0';
 	if(phase[locus]!=0 && phase[locus]!=1){
@@ -827,7 +824,7 @@ void CIndividual::ResetCounts()
   int nloci = get_nloci();
   for(int c=0; c < 2; c++){
     for(int r=0; r<nloci; r++){
-      for(int j=0; j< AlleleCount[c][r].size(); j++){
+      for(unsigned j=0; j< AlleleCount[c][r].size(); j++){
 	AlleleCount[c][r][j]=0.0;
       }	
     }
@@ -932,9 +929,9 @@ void CIndividual::TransferCounts(Summary & sum)
   }
   
   locus = 0;
-  for (int segment = 0; segment < sum.alleleprob.size(); segment++){
-    for (int pos = 0; pos < sum.alleleprob[segment].size(); pos++){
-      for(int allele = 0; allele < AlleleCount[0][locus].size(); allele++){
+  for (unsigned segment = 0; segment < sum.alleleprob.size(); segment++){
+    for (unsigned pos = 0; pos < sum.alleleprob[segment].size(); pos++){
+      for(unsigned allele = 0; allele < AlleleCount[0][locus].size(); allele++){
 	if(allele != sum.bestguess[segment].first.get_allele(pos))
 	  AlleleCount[0][locus][allele] = sum.errorprob[segment][pos][0] * sum.alleleprob[segment][pos][0][allele];
 	else
@@ -954,7 +951,7 @@ void CIndividual::TransferCounts(Summary & sum)
 bool CanBeFoundAtAll(const Haplotype & h, const vector<CIndividual> & pop)
 {
   bool found;
-  for(int ind = 0; ind < pop.size(); ind++){
+  for(unsigned ind = 0; ind < pop.size(); ind++){
     Haplotype CompHap = GetCompHap(h, pop[ind], found, false);
     if(found)
       return true;

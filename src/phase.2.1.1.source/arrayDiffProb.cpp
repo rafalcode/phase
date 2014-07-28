@@ -82,7 +82,7 @@ int ArrayDiffProb::check_bound (int i, int j, int k, int l) const
 void ArrayDiffProb::CalcDiffProb ( const vector<ArrayQ *> & Q, const string & LociType )
 {
   
-  int firstSNP= 0; //first SNP locus;
+  unsigned firstSNP= 0; //first SNP locus;
   while((LociType[firstSNP]!='S') && (firstSNP<(LociType.size()-1)))
     firstSNP++;
  

@@ -1,0 +1,146 @@
+Script started on lun 28 jul 2014 16:27:13 CEST
+]0;nutria@fbx:~/github_rafalcode/phase/src/phase.2.1.1.source[0;32mnutria@fbx:~/github_rafalcode/phase/src/phase.2.1.1.source >[0;37m make ultraclean
+rm -rf *.o
+rm -f phase
+]0;nutria@fbx:~/github_rafalcode/phase/src/phase.2.1.1.source[0;32mnutria@fbx:~/github_rafalcode/phase/src/phase.2.1.1.source >[0;37m make
+g++ -Wall -DBIGDATASETS -I. -I.. -c phase.cpp
+phase.cpp: In function ‘int main(int, char**)’:
+phase.cpp:206:24: warning: unused variable ‘MeanRhoStart’ [-Wunused-variable]
+                 double MeanRhoStart = d_cmdoptions["rhostart"];
+                        ^
+phase.cpp:94:9: warning: unused variable ‘status’ [-Wunused-variable]
+     int status = proc_args ( argc, argv, filenames, cmdoptions, d_cmdoptions, Niter, Nthin, Nburn);
+         ^
+g++ -Wall -DBIGDATASETS -I. -I.. -c indnode.cpp
+In file included from indnode.cpp:6:0:
+indnode.hpp: In constructor ‘CIndividual::CIndividual(std::string)’:
+indnode.hpp:48:20: warning: ‘CIndividual::recom’ will be initialized after [-Wreorder]
+   std::vector<int> recom; // list of sites after which a recom occurs in transmission from this ind
+                    ^
+indnode.hpp:47:20: warning:   ‘std::vector<int> CIndividual::missing’ [-Wreorder]
+   std::vector<int> missing;
+                    ^
+indnode.cpp:26:1: warning:   when initialized here [-Wreorder]
+ CIndividual::CIndividual ( string loci_type ) : 
+ ^
+In file included from indnode.cpp:6:0:
+indnode.hpp:56:23: warning: ‘CIndividual::known’ will be initialized after [-Wreorder]
+     std::vector<int>  known; // phase known loci
+                       ^
+indnode.hpp:30:23: warning:   ‘std::vector<Haplotype> CIndividual::phenotype’ [-Wreorder]
+     vector<Haplotype> phenotype; // stores current guess of genotype
+                       ^
+indnode.cpp:26:1: warning:   when initialized here [-Wreorder]
+ CIndividual::CIndividual ( string loci_type ) : 
+ ^
+In file included from indnode.cpp:6:0:
+indnode.hpp: In copy constructor ‘CIndividual::CIndividual(const CIndividual&)’:
+indnode.hpp:48:20: warning: ‘CIndividual::recom’ will be initialized after [-Wreorder]
+   std::vector<int> recom; // list of sites after which a recom occurs in transmission from this ind
+                    ^
+indnode.hpp:47:20: warning:   ‘std::vector<int> CIndividual::missing’ [-Wreorder]
+   std::vector<int> missing;
+                    ^
+indnode.cpp:74:1: warning:   when initialized here [-Wreorder]
+ CIndividual::CIndividual( const CIndividual & C ) :
+ ^
+In file included from indnode.cpp:6:0:
+indnode.hpp:56:23: warning: ‘CIndividual::known’ will be initialized after [-Wreorder]
+     std::vector<int>  known; // phase known loci
+                       ^
+indnode.hpp:30:23: warning:   ‘std::vector<Haplotype> CIndividual::phenotype’ [-Wreorder]
+     vector<Haplotype> phenotype; // stores current guess of genotype
+                       ^
+indnode.cpp:74:1: warning:   when initialized here [-Wreorder]
+ CIndividual::CIndividual( const CIndividual & C ) :
+ ^
+In file included from indnode.cpp:6:0:
+indnode.hpp:37:29: warning: ‘CIndividual::PhaseCount’ will be initialized after [-Wreorder]
+     vector< vector<float> > PhaseCount;
+                             ^
+indnode.hpp:36:39: warning:   ‘std::vector<std::vector<std::vector<float> > > CIndividual::AlleleCount’ [-Wreorder]
+     vector< vector< vector<float> > > AlleleCount;
+                                       ^
+indnode.cpp:74:1: warning:   when initialized here [-Wreorder]
+ CIndividual::CIndividual( const CIndividual & C ) :
+ ^
+indnode.cpp:94:9: warning: unused variable ‘nloci’ [-Wunused-variable]
+     int nloci = C.phase.size();
+         ^
+In file included from indnode.cpp:6:0:
+indnode.hpp: In constructor ‘CIndividual::CIndividual(const CIndividual&, int, int)’:
+indnode.hpp:48:20: warning: ‘CIndividual::recom’ will be initialized after [-Wreorder]
+   std::vector<int> recom; // list of sites after which a recom occurs in transmission from this ind
+                    ^
+indnode.hpp:47:20: warning:   ‘std::vector<int> CIndividual::missing’ [-Wreorder]
+   std::vector<int> missing;
+                    ^
+indnode.cpp:102:1: warning:   when initialized here [-Wreorder]
+ CIndividual::CIndividual( const CIndividual & C, int firstlocus, int lastlocus ) :
+ ^
+In file included from indnode.cpp:6:0:
+indnode.hpp:56:23: warning: ‘CIndividual::known’ will be initialized after [-Wreorder]
+     std::vector<int>  known; // phase known loci
+                       ^
+indnode.hpp:30:23: warning:   ‘std::vector<Haplotype> CIndividual::phenotype’ [-Wreorder]
+     vector<Haplotype> phenotype; // stores current guess of genotype
+                       ^
+indnode.cpp:102:1: warning:   when initialized here [-Wreorder]
+ CIndividual::CIndividual( const CIndividual & C, int firstlocus, int lastlocus ) :
+ ^
+In file included from indnode.cpp:6:0:
+indnode.hpp: In constructor ‘CIndividual::CIndividual(const CIndividual&, const CIndividual&)’:
+indnode.hpp:56:23: warning: ‘CIndividual::known’ will be initialized after [-Wreorder]
+     std::vector<int>  known; // phase known loci
+                       ^
+indnode.hpp:48:20: warning:   ‘std::vector<int> CIndividual::recom’ [-Wreorder]
+   std::vector<int> recom; // list of sites after which a recom occurs in transmission from this ind
+                    ^
+indnode.cpp:177:1: warning:   when initialized here [-Wreorder]
+ CIndividual::CIndividual( const CIndividual & C1,  const CIndividual & C2 ) :
+ ^
+In file included from indnode.cpp:6:0:
+indnode.hpp:48:20: warning: ‘CIndividual::recom’ will be initialized after [-Wreorder]
+   std::vector<int> recom; // list of sites after which a recom occurs in transmission from this ind
+                    ^
+indnode.hpp:30:23: warning:   ‘std::vector<Haplotype> CIndividual::phenotype’ [-Wreorder]
+     vector<Haplotype> phenotype; // stores current guess of genotype
+                       ^
+indnode.cpp:177:1: warning:   when initialized here [-Wreorder]
+ CIndividual::CIndividual( const CIndividual & C1,  const CIndividual & C2 ) :
+ ^
+indnode.cpp: In destructor ‘CIndividual::~CIndividual()’:
+indnode.cpp:271:9: warning: unused variable ‘nloci’ [-Wunused-variable]
+     int nloci = phase.size();
+         ^
+indnode.cpp: In member function ‘void CIndividual::set_id()’:
+indnode.cpp:318:46: error: invalid conversion from ‘int’ to ‘std::ios_base::openmode {aka std::_Ios_Openmode}’ [-fpermissive]
+     ostringstream ostr ( idstring, NMAXD + 3 );
+                                              ^
+In file included from indnode.cpp:12:0:
+/usr/include/c++/4.9.1/sstream:441:7: note: initializing argument 2 of ‘std::basic_ostringstream<_CharT, _Traits, _Alloc>::basic_ostringstream(const __string_type&, std::ios_base::openmode) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>; std::basic_ostringstream<_CharT, _Traits, _Alloc>::__string_type = std::basic_string<char>; std::ios_base::openmode = std::_Ios_Openmode]’
+       basic_ostringstream(const __string_type& __str,
+       ^
+indnode.cpp: In member function ‘int CIndividual::read_orig_phenotypes(std::istream&, const string&, int, int)’:
+indnode.cpp:365:40: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+             for ( int locus = 0; locus < loci_type.size(); ++locus) {
+                                        ^
+indnode.cpp:371:36: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+         for ( int locus = 0; locus < loci_type.size(); ++locus ) {
+                                    ^
+indnode.cpp:378:34: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+       for ( int locus = 0; locus < loci_type.size(); ++locus ) { 
+                                  ^
+indnode.cpp: In member function ‘void CIndividual::TransferCounts(Summary&)’:
+indnode.cpp:937:12: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  if(allele != sum.bestguess[segment].first.get_allele(pos))
+            ^
+indnode.cpp:941:12: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  if(allele != sum.bestguess[segment].second.get_allele(pos))
+            ^
+Makefile:31: recipe for target 'indnode.o' failed
+make: *** [indnode.o] Error 1
+]0;nutria@fbx:~/github_rafalcode/phase/src/phase.2.1.1.source[0;32mnutria@fbx:~/github_rafalcode/phase/src/phase.2.1.1.source >[0;37m exit
+exit
+
+Script done on lun 28 jul 2014 16:29:25 CEST

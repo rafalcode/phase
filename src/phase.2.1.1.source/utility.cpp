@@ -483,7 +483,7 @@ int rint2 ( const vector<double> & prob, double psum )
     {
         if ( psum > 0.0 ) {
             u *= psum;
-            for (int i = 0; i < prob.size() - 1; ++i) {
+            for (unsigned i = 0; i < prob.size() - 1; ++i) {
                 if ( u < csum ) return i;
                 csum += prob[i+1];
             }
@@ -492,7 +492,7 @@ int rint2 ( const vector<double> & prob, double psum )
             // Calculate cdf
             std::partial_sum ( prob.begin(), prob.end(), cumprob.begin());
             u *= cumprob[prob.size()-1];
-            for (int i = 0; i < cumprob.size() - 1; ++i) {
+            for (unsigned i = 0; i < cumprob.size() - 1; ++i) {
                 if ( u < cumprob[i] ) return i;
             }
         }

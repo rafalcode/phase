@@ -126,7 +126,7 @@ inline int Haplotype::get_nloci() const
 inline int Haplotype::get_printedlen() const
 {
   int l=0;
-  for(int i=0;i<locus_type.size(); i++){
+  for(unsigned i=0;i<locus_type.size(); i++){
     if(locus_type[i]=='S')
       l++;
     else
