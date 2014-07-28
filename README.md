@@ -2,10 +2,11 @@ Try
 make testSPLm
 
 
-* Fork
+Why this fork?
+
 Haplotype phase is only an occasional interest of mine, but I have been continually asked
-to find ways of speeding it up. Mr. Stephen's implement is not the only one, but it
-has always seemed the most advanced in terms of speed.
+to find ways of speeding it up. Mr. Stephen's implementation is not the only one, but it
+has always seemed the most advanced certainly in terms of speed.
 
 For a while it was available to academic users (such as I am) in 32 bit binary form
 and I used python's multprocessing module to launch a pool of parallel instances on it.
@@ -15,3 +16,8 @@ However, the primary aim of the fork is not to change any of the intricacies of 
 but rather to annotate and allow me to do a least a clean compilation on 64-bit linux.
 
 I also add my python multiprocessing script into a python subdir.
+
+Also I intend to make an inut file sanity checker, this is just for preprocessing
+of the input files
+
+ANother subdirectory called scritpfiles is merely for recording compilation sessions.
