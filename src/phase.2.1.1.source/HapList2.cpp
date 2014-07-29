@@ -12,17 +12,13 @@
 using namespace std;
 extern int NHL;
 // constructor
-HapList::HapList () :
-  haplist (),
-  PositiveHaps ()
+HapList::HapList() : haplist(), PositiveHaps()
 {
   NHL++;
 }
 
 // copy constructor
-HapList::HapList (const HapList & h2):
-  haplist ( h2.haplist),
-  PositiveHaps ( h2.PositiveHaps)
+HapList::HapList(const HapList & h2) : haplist ( h2.haplist), PositiveHaps ( h2.PositiveHaps)
 {
   NHL++;
 }
@@ -552,7 +548,7 @@ void HapList::MakePairsIndex(vector < vector< pair< ListType::iterator,ListType:
 void HapList::PrunePairsIndex(vector < vector< pair< ListType::iterator,ListType::iterator> > > & index, vector < vector< double > > & phaseprobs,vector <CIndividual> & pop,
 double minthreshold)
 {
-  bool found;
+  // bool found; // unused
   int Nind = index.size();
   vector < vector< pair< ListType::iterator,ListType::iterator> > > oldindex(index);
   vector < vector< double > > oldphaseprobs(phaseprobs);
@@ -1154,7 +1150,7 @@ vector<Summary> HapList::ProduceSummary(vector< vector< pair< ListType::iterator
       }
     }
     
-    int bestsplitlocus = 0;
+    // int bestsplitlocus = 0; // unused.
     double bestkl = klsplit[0];
     for(int locus = (startlocus+1); locus < endlocus; locus++){
       if(klsplit[locus-startlocus]>bestkl){
@@ -1204,39 +1200,35 @@ void HapList::OutputPair(ostream & ostr, pair< ListType::iterator,ListType::iter
   hpair.second->first.print_haplotype(ostr,coding);
 }
 
-
-
-
-
-
 // returns the prob of a given haplotype, according to method
-double HapList::CalcProb(const Haplotype & h, char method, vector<ArrayQ *> & Q, int nchr, vector<double> & vecRho, double DPRIOR, const vector<int> & nmissing, bool ALLSNP, const vector<double> & vecdiffprob , bool fuzzy){
-  
+double HapList::CalcProb(const Haplotype & h, char method, vector<ArrayQ *> & Q, int nchr, vector<double> & vecRho, double DPRIOR, const vector<int> & nmissing, bool ALLSNP, const vector<double> & vecdiffprob , bool fuzzy)
+{
   vector<double> dummy; // used in FDLSProb below
+  double retval;
  
   switch(method) {
 
   case 'E': //classic EM method 
     DPRIOR = 0.001;
-    return EMProb(h, DPRIOR);
+    retval= EMProb(h, DPRIOR);
     break;
  
   case 'S': // SSD method
-    if(ALLSNP){
+    if(ALLSNP) {
       
       // if(abs(SNPSDProb(h, vecdiffprob) - SDProb(h, Q, nchr)) > 0.0001){
 // 	cout << "WARNING!" << endl;
 // 	cout << "SNP probs compare:" << SNPSDProb(h, vecdiffprob) << "," <<  SDProb(h, Q, nchr) << endl;
 //       }
       
-      return SNPSDProb(h, vecdiffprob);
+      retval=SNPSDProb(h, vecdiffprob);
     }
     else
-      return SDProb(h, Q, nchr);
+      retval=SDProb(h, Q, nchr);
     break;
 
   case 'R': // Recom method, with Fearnhead-Donnelly-Li-Stephens conditional
-    return FDLSProb(h, Q, nchr, vecRho, dummy, false, true, nmissing, vector<double>(0), 0, fuzzy);
+    retval=FDLSProb(h, Q, nchr, vecRho, dummy, false, true, nmissing, vector<double>(0), 0, fuzzy);
     break;
 				    
   default:
@@ -1244,7 +1236,7 @@ double HapList::CalcProb(const Haplotype & h, char method, vector<ArrayQ *> & Q,
     exit(1);
   
   }
-
+  return retval;
 }
 
 void HapList::ComputeProbs(char method, vector<ArrayQ *> & Q, int nchr, vector<double> & vecRho){
@@ -1623,8 +1615,9 @@ void HapList::ComputeHiddenStateProbs(vector<vector<double> > & CopyProb, const 
   vector<double> BetaSum( Nloci );
   vector<double>::iterator BetaPointer;
 
-  double a=ForwardsAlgorithm(h, Q, nchr, vecRho, Alpha, AlphaSum, usequad, isunknown, false , vecTheta, Nforcorrection );
-  double b=ForwardsAlgorithm(h, Q, nchr, vecRho, Beta, BetaSum, usequad, isunknown, true , vecTheta, Nforcorrection );
+  // both these unused.
+  // double a=ForwardsAlgorithm(h, Q, nchr, vecRho, Alpha, AlphaSum, usequad, isunknown, false , vecTheta, Nforcorrection );
+  // double b=ForwardsAlgorithm(h, Q, nchr, vecRho, Beta, BetaSum, usequad, isunknown, true , vecTheta, Nforcorrection );
 
   // cout << "a=" << a << endl;
 //   cout << "b=" << b << endl;

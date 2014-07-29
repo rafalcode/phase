@@ -1,0 +1,115 @@
+Script started on lun 28 jul 2014 23:37:26 CEST
+]0;nutria@fbx:~/github_rafalcode/phase/src/phase.2.1.1.source[0;32mnutria@fbx:~/github_rafalcode/phase/src/phase.2.1.1.source >[0;37m exitmake clean && make
+rm -rf *.o
+g++ -Wall -DBIGDATASETS -I. -I.. -c phase.cpp
+In file included from classpop.hpp:9:0,
+                 from phase.cpp:5:
+indnode.hpp: In member function ‘void CIndividual::update_haplotypes(const Haplotype&, const Haplotype&)’:
+indnode.hpp:320:29: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     if( ((h0.get_allele(*u) != orig_phenotype[0][*u]) && (orig_phenotype[0][*u]!=MISSMS)) || 
+                             ^
+indnode.hpp:321:22: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  ((h1.get_allele(*u) != orig_phenotype[1][*u]) && (orig_phenotype[1][*u]!=MISSMS)) ){
+                      ^
+g++ -Wall -DBIGDATASETS -I. -I.. -c indnode.cpp
+In file included from /usr/include/c++/4.9.1/backward/strstream:51:0,
+                 from indnode.cpp:12:
+/usr/include/c++/4.9.1/backward/backward_warning.h:32:2: warning: #warning This file includes at least one deprecated or antiquated header which may be removed without further notice at a future date. Please use a non-deprecated interface with equivalent functionality instead. For a listing of replacement headers and interfaces, consult the file backward_warning.h. To disable this warning use -Wno-deprecated. [-Wcpp]
+ #warning \
+  ^
+In file included from indnode.cpp:6:0:
+indnode.hpp: In member function ‘void CIndividual::update_haplotypes(const Haplotype&, const Haplotype&)’:
+indnode.hpp:320:29: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     if( ((h0.get_allele(*u) != orig_phenotype[0][*u]) && (orig_phenotype[0][*u]!=MISSMS)) || 
+                             ^
+indnode.hpp:321:22: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  ((h1.get_allele(*u) != orig_phenotype[1][*u]) && (orig_phenotype[1][*u]!=MISSMS)) ){
+                      ^
+g++ -Wall -DBIGDATASETS -I. -I.. -c utility.cpp
+g++ -Wall -DBIGDATASETS -I. -I.. -c arrayQ.cpp
+g++ -Wall -DBIGDATASETS -I. -I.. -c arrayFF.cpp
+In file included from arrayFF.hpp:14:0,
+                 from arrayFF.cpp:5:
+indnode.hpp: In member function ‘void CIndividual::update_haplotypes(const Haplotype&, const Haplotype&)’:
+indnode.hpp:320:29: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     if( ((h0.get_allele(*u) != orig_phenotype[0][*u]) && (orig_phenotype[0][*u]!=MISSMS)) || 
+                             ^
+indnode.hpp:321:22: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  ((h1.get_allele(*u) != orig_phenotype[1][*u]) && (orig_phenotype[1][*u]!=MISSMS)) ){
+                      ^
+g++ -Wall -DBIGDATASETS -I. -I.. -c arrayCC.cpp
+In file included from arrayCC.hpp:7:0,
+                 from arrayCC.cpp:1:
+indnode.hpp: In member function ‘void CIndividual::update_haplotypes(const Haplotype&, const Haplotype&)’:
+indnode.hpp:320:29: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     if( ((h0.get_allele(*u) != orig_phenotype[0][*u]) && (orig_phenotype[0][*u]!=MISSMS)) || 
+                             ^
+indnode.hpp:321:22: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  ((h1.get_allele(*u) != orig_phenotype[1][*u]) && (orig_phenotype[1][*u]!=MISSMS)) ){
+                      ^
+g++ -Wall -DBIGDATASETS -I. -I.. -c arrayDiffProb.cpp
+g++ -Wall -DBIGDATASETS -I. -I.. -c arrayDiploidDiffProb.cpp
+g++ -Wall -DBIGDATASETS -I. -I.. -c arrayDiffCount.cpp
+In file included from arrayCC.hpp:7:0,
+                 from arrayDiffCount.hpp:5,
+                 from arrayDiffCount.cpp:1:
+indnode.hpp: In member function ‘void CIndividual::update_haplotypes(const Haplotype&, const Haplotype&)’:
+indnode.hpp:320:29: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     if( ((h0.get_allele(*u) != orig_phenotype[0][*u]) && (orig_phenotype[0][*u]!=MISSMS)) || 
+                             ^
+indnode.hpp:321:22: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  ((h1.get_allele(*u) != orig_phenotype[1][*u]) && (orig_phenotype[1][*u]!=MISSMS)) ){
+                      ^
+g++ -Wall -DBIGDATASETS -I. -I.. -c HapList2.cpp
+In file included from HapList2.hpp:9:0,
+                 from HapList2.cpp:1:
+indnode.hpp: In member function ‘void CIndividual::update_haplotypes(const Haplotype&, const Haplotype&)’:
+indnode.hpp:320:29: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     if( ((h0.get_allele(*u) != orig_phenotype[0][*u]) && (orig_phenotype[0][*u]!=MISSMS)) || 
+                             ^
+indnode.hpp:321:22: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  ((h1.get_allele(*u) != orig_phenotype[1][*u]) && (orig_phenotype[1][*u]!=MISSMS)) ){
+                      ^
+g++ -Wall -DBIGDATASETS -I. -I.. -c Haplotype.cpp
+g++ -Wall -DBIGDATASETS -I. -I.. -c classpop.cpp
+In file included from classpop.hpp:9:0,
+                 from classpop.cpp:6:
+indnode.hpp: In member function ‘void CIndividual::update_haplotypes(const Haplotype&, const Haplotype&)’:
+indnode.hpp:320:29: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     if( ((h0.get_allele(*u) != orig_phenotype[0][*u]) && (orig_phenotype[0][*u]!=MISSMS)) || 
+                             ^
+indnode.hpp:321:22: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  ((h1.get_allele(*u) != orig_phenotype[1][*u]) && (orig_phenotype[1][*u]!=MISSMS)) ){
+                      ^
+classpop.cpp: In member function ‘void ClassPop::GibbsUpdate(int, double)’:
+classpop.cpp:1117:41: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+       if(pop[n1].get_haplotype(0,locus) != newhap.get_allele(locus))
+                                         ^
+g++ -Wall -DBIGDATASETS -I. -I.. -c recom.cpp
+In file included from classpop.hpp:9:0,
+                 from recom.cpp:1:
+indnode.hpp: In member function ‘void CIndividual::update_haplotypes(const Haplotype&, const Haplotype&)’:
+indnode.hpp:320:29: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     if( ((h0.get_allele(*u) != orig_phenotype[0][*u]) && (orig_phenotype[0][*u]!=MISSMS)) || 
+                             ^
+indnode.hpp:321:22: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  ((h1.get_allele(*u) != orig_phenotype[1][*u]) && (orig_phenotype[1][*u]!=MISSMS)) ){
+                      ^
+g++ -Wall -DBIGDATASETS -I. -I.. -c HapPairList.cpp
+In file included from HapPairList.hpp:10:0,
+                 from HapPairList.cpp:1:
+indnode.hpp: In member function ‘void CIndividual::update_haplotypes(const Haplotype&, const Haplotype&)’:
+indnode.hpp:320:29: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     if( ((h0.get_allele(*u) != orig_phenotype[0][*u]) && (orig_phenotype[0][*u]!=MISSMS)) || 
+                             ^
+indnode.hpp:321:22: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  ((h1.get_allele(*u) != orig_phenotype[1][*u]) && (orig_phenotype[1][*u]!=MISSMS)) ){
+                      ^
+g++ -Wall -DBIGDATASETS -I. -I.. -c Summary.cpp
+cc    -c -o mt19937ar.o mt19937ar.c
+g++ -Wall -DBIGDATASETS -I. -I.. -c pacb.lookup.cpp
+g++ -Wall -DBIGDATASETS -I. -I.. -I. -I.. phase.o indnode.o utility.o arrayQ.o arrayFF.o arrayCC.o arrayDiffProb.o arrayDiploidDiffProb.o arrayDiffCount.o HapList2.o Haplotype.o classpop.o recom.o HapPairList.o Summary.o mt19937ar.o pacb.lookup.o  -o PHASE  -lm
+]0;nutria@fbx:~/github_rafalcode/phase/src/phase.2.1.1.source[0;32mnutria@fbx:~/github_rafalcode/phase/src/phase.2.1.1.source >[0;37m exit
+exit
+
+Script done on lun 28 jul 2014 23:37:46 CEST

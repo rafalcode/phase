@@ -91,7 +91,7 @@ int main ( int argc, char** argv)
     int Niter = 100; // Number of MCMC iterations 
     int Nthin = 1; // Thinning interval
     int Nburn = 100; // Burn-in iterations
-    int status = proc_args ( argc, argv, filenames, cmdoptions, d_cmdoptions, Niter, Nthin, Nburn);
+    proc_args ( argc, argv, filenames, cmdoptions, d_cmdoptions, Niter, Nthin, Nburn);
 
     // Read in data file
     ifstream input (filenames["input"].c_str());
@@ -203,7 +203,7 @@ int main ( int argc, char** argv)
 
             if(cmdoptions["inferrho"]==1){ // just do MCMC on input
                 //haplotypes to infer rho
-                double MeanRhoStart = d_cmdoptions["rhostart"];
+                // double MeanRhoStart = d_cmdoptions["rhostart"]; // unused
                 //allpop.InitialiseRho(MeanRhoStart);
                 double sigmamean = 1;
                 double sigmamult = 0.1;

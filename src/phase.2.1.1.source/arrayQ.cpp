@@ -16,21 +16,16 @@
 using namespace std;
 
 // default constructor
-ArrayQ::ArrayQ ():
-  nchr(0),
-  nalleles(),
-  array(NULL)
+ArrayQ::ArrayQ (): array(NULL), nchr(0), nalleles()
 {  
 }
 
 // copy constructor
-ArrayQ::ArrayQ (const ArrayQ & q2) :
-  nchr(q2.nchr),
-  nalleles(q2.nalleles)
+ArrayQ::ArrayQ (const ArrayQ & q2) : nchr(q2.nchr), nalleles(q2.nalleles)
 {
 // Allocate memory for array.
 
-  array = new double *** [ nchr ];
+  array = new double *** [nchr];
   for (int n = 0; n < nchr; ++n) {
     //for (int n = nchr-4; n < nchr; ++n) {
     array[n] = new double ** [ SS ];

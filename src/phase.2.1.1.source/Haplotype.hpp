@@ -8,29 +8,26 @@
 
 using namespace::std;
 
-class Haplotype {
-
+class Haplotype
+{
   vector<float> h;
-  string locus_type; //stores whether ith locus is SNP or MS
- 
+  string locus_type; //stores whether ith locus is SNP or MS .... would have been better being a plural. FOr every there will be a type 'S' (SNP) or 'M' micsat.
 public:
+  Haplotype(string lt=""); // Constructor
+  Haplotype(Haplotype const &); // Copy constructor
+  ~Haplotype(); // Destructor    
 
-  Haplotype (string lt="");                  // Constructor
-  Haplotype (Haplotype const & );  // Copy constructor
-  
-  ~Haplotype ();                      // Destructor    
+  Haplotype(const Haplotype &, int firstlocus, int lastlocus); // haplotype between firstlocus and lastlocus
+  Haplotype(const Haplotype &h1, const Haplotype &h2); // concatenation
 
-  Haplotype (const Haplotype &, int firstlocus, int lastlocus); // haplotype between firstlocus and lastlocus
-  Haplotype (const Haplotype & h1, const Haplotype & h2); // concatenation
+  const Haplotype &operator=(Haplotype const & b);
 
-  const Haplotype & operator=(Haplotype const & b);
-
-  void set_allele( int locus, int allele);
+  void set_allele(int locus, int allele);
   //void set_haplotype( CIndividual ind, int chr);
-  int get_allele( int locus) const;
-  float get_fuzzyallele( int locus) const;
+  unsigned get_allele(int locus) const;
+  float get_fuzzyallele(int locus) const;
   
-  void print_haplotype(ostream & ostr, const vector<int> * coding) const;
+  void print_haplotype(ostream &ostr, const vector<int> *coding) const;
   
   bool operator==(const Haplotype &) const; //inline
   bool operator!=(const Haplotype &) const; //inline
@@ -39,21 +36,17 @@ public:
   bool const operator<=(const Haplotype &) const; //inline
   bool const operator>=(const Haplotype &) const;
   string get_locus_type() const; //inline
-  int Nloci() const; // inline
-  int get_nloci() const; // inline (as above)
-  int get_printedlen() const; // inlinse
-
+  unsigned Nloci() const; // inline
+  unsigned get_nloci() const; // inline (as above)
+  int get_printedlen() const; // inline
 };
 
-
-// Set allelic types
-
-inline void Haplotype::set_allele ( int locus, int a ) 
+inline void Haplotype::set_allele (int locus, int a) // Set allelic types
 {
-  h[locus] = a;
+  h[locus] = a; /* but h is a vector of floats ...? */
 }
 
-inline int Haplotype::get_allele( int locus ) const
+inline unsigned Haplotype::get_allele(int locus) const
 {
   // cout << "allele = " << h[locus] << endl;
 //   int ret = (int) (h[locus]+0.49);
@@ -62,21 +55,21 @@ inline int Haplotype::get_allele( int locus ) const
 //     cout << "Here!" << endl;
 //     exit(1);
 //   }
-  return (int) floor(h[locus]+0.5);
+  return (unsigned)floor(h[locus]+0.5);
   
 }
 
-inline float Haplotype::get_fuzzyallele(int locus) const
+inline float Haplotype::get_fuzzyallele(int locus) const /* return a float, do not integerise */
 {
   return h[locus];
 }
 
-inline bool Haplotype::operator==( const Haplotype & b ) const
+inline bool Haplotype::operator==( const Haplotype &b) const
 {
   return h == b.h;
 }
 
-inline bool Haplotype::operator!=(const Haplotype & b) const
+inline bool Haplotype::operator!=(const Haplotype &b) const
 {
    return h!=b.h;
 }
@@ -89,7 +82,6 @@ inline bool Haplotype::Matches( const Haplotype & b, const vector<int> & uselist
 
   return true;
 }
-
 
 inline const bool Haplotype::operator<(const Haplotype & b ) const
 {
@@ -106,19 +98,17 @@ inline const bool Haplotype::operator>=(const Haplotype & b) const
   return h>=b.h;
 }
 
-
-
 inline string Haplotype::get_locus_type() const
 {
   return locus_type;
 }
 
-inline int Haplotype::Nloci() const
+inline unsigned Haplotype::Nloci() const /* the exact same as get_nloci ... see next one */
 {
   return locus_type.size();
 }
 
-inline int Haplotype::get_nloci() const
+inline unsigned Haplotype::get_nloci() const
 {
   return locus_type.size();
 }
@@ -126,7 +116,7 @@ inline int Haplotype::get_nloci() const
 inline int Haplotype::get_printedlen() const
 {
   int l=0;
-  for(unsigned i=0;i<locus_type.size(); i++){
+  for(unsigned i=0;i<locus_type.size(); i++) {
     if(locus_type[i]=='S')
       l++;
     else
@@ -151,9 +141,6 @@ inline int Haplotype::get_printedlen() const
 //    }
 //  }
 
-
-
 int NDiff(Haplotype h1, Haplotype h2);
-
 
 #endif

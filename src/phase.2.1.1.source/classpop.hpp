@@ -25,75 +25,48 @@
 
 using namespace::std;
 
-class ClassPop {
-  
-
-  int Nloci;
+class ClassPop
+{
+  unsigned Nloci;
   int Nind;
   int Nchild;
-
   vector<CIndividual> pop;    // Vector of individuals
-  
   vector<int> childindex; // childindex[i] says which child is child of individual i
-
   vector<int> casecontrol; // vector of whether each ind is case or control
   vector<int> groupsize; // number of chromosomes in each group
-
   vector< vector<int> > buddy;
-
   string loci_type;           // Loci types
-  
   vector<double> position;    // Map position
-
   vector<int> order; // order in which inds are considered
-
   vector<double> vecRho;
   vector<double> vecRhoDeriv;
   double RhoMean;
   vector<double> RhoMult; // vecRho[i] = RhoMean * RhoMult[i]
-
   vector<double> right; // parameters for simple hotspot model
-  vector<double> lambda;
   vector<double> left;
-
+  vector<double> lambda;
   int RecomModel; // 0 = general model, 1 = simple hotspot, 2 = const recom
   int NindToUseForRho; // max number of inds to use in estimating Rho
-
   double CurrentLogProb;
-
   vector<ArrayQ *> Qptr;
   static vector<ArrayQ> Qvalues;
   static ArrayQ QSNP;
-
   vector<double> vecdiffprob; // prob that 2 haps differ by 0,1,2,... under SD approx (SNPs only)
-
   vector<double> vecTheta;
-
-        /* For SNP sites, coding[0][r] are the integer value
-       of the allele type (recoded as 0). Same for 1.
-       For MS sites, coding[0][r] is the offset, 
-       and coding[1][r] is range of repeats.  */
-    vector<int> coding [2];  
-  
+  vector<int> coding[2]; /* For SNP sites, coding[0][r] are the integer value of the allele type (recoded as 0). Same for 1.  For MS sites, coding[0][r] is the offset, and coding[1][r] is range of repeats.  */
     double BestLogProb; // best match so far
-
-    int NSNP;
+    unsigned NSNP;
     int ALLSNP;
     int TREATSNPSASMS;
     vector<int> SNPlist;
     vector<int> nonSNPlist;
 
-
-  ArrayCC CC; // 
+  ArrayCC CC;
   ArrayDiffCount DiffCount; //DiffCount stores the number of differences between each pair of haplotypes at SNP positions 
-
   // ArrayCC knownCC;               //as above, but based only on positions with known phase in id
   // ArrayDiffCount knownDiffCount; //
-
   // create lists of the haplotypes
-
   HapList haplist;
-
   
     // {{{ Private functions
 
@@ -119,7 +92,6 @@ class ClassPop {
   
 
     // Computations
-     
   void GibbsUpdate ( int n1, double dirprior);
 
     void update_NR ( int n1, ArrayFF &, const ArrayDiffProb &, const ArrayDiploidDiffProb &, int fAncUpdate = 0, bool fNaiveGibbs=false);
@@ -134,30 +106,15 @@ class ClassPop {
 // 			    const ArrayDiffProb &);
 
 
-    void ImputeMissingPositions(int n0, 
-				int c0, 
-				int n1, 
-				int c1, 
-				int t1, 
-				int nchr, 
-				const vector<int> & uselist);
+    void ImputeMissingPositions(int n0, int c0, int n1, int c1, int t1, int nchr, const vector<int> & uselist);
 
-    void diff_calc_phase_prob(int, 
-			 std::vector<int>, 
-			 std::vector<double>::iterator &,
-			 const ArrayDiffProb &);
+    void diff_calc_phase_prob(int, std::vector<int>, std::vector<double>::iterator &, const ArrayDiffProb &);
 
-    void calc_phase_prob(int, 
-			 std::vector<int>, 
-			 std::vector<double>::iterator &, 
-			 const ArrayDiffProb &);
+    void calc_phase_prob(int, std::vector<int>, std::vector<double>::iterator &, const ArrayDiffProb &);
 
-  double DiploidForwardsAlg (std::vector<std::vector<double> > &,
-                              int,
-                              std::vector<double> &);
+  double DiploidForwardsAlg (std::vector<std::vector<double> > &, int, std::vector<double> &);
 
   void DiploidBackwardsAlg ( int n, double theta, double delta, vector<vector<double> > &, vector<double> & rho, double temperature, vector <vector<int> > & CopiedInd, vector <vector<int> > & CopiedChr, vector <vector<int> > & CopiedTime);
-
 
     double FastForwardsAlg ( int n, int c, double theta, double delta, vector<double> * FF, vector<double> & rho);
     void FastBackwardsAlg ( int n, int c, double theta, double delta, vector<double> * FF, vector<double> & rho, double temperature, vector <int> & CopiedInd, vector<int> & CopiedChr, vector<int> & CopiedTime);
@@ -165,13 +122,12 @@ class ClassPop {
   void ConditionalDiploidSim(int ind, double theta, double delta, double temperature,
 vector<int> * CopiedInd, vector<int> * CopiedChr, vector<int> * CopiedTime);
 
-    int impute_allele (int r, int nchr,
-                       int t0, int from0) const;
+    int impute_allele (int r, int nchr, int t0, int from0) const;
 
     void update_phase_R  ( vector<double> & rho, double theta, double delta);    
     void update_phase_NR ( int, ArrayFF &, const ArrayDiffProb &, const ArrayDiploidDiffProb & );
    
-    int update_phase_NR_fastestforsmallr ( int,  const ArrayDiffProb &, int );
+    int update_phase_NR_fastestforsmallr ( int,  const ArrayDiffProb &, unsigned );
   
     void UpdateCounts();
   void TransferCounts(vector<Summary> & sum);
@@ -349,60 +305,68 @@ double PrObserveGivenTruth(int observed0, int observed1, int true0, int true1, d
 
 double PrObserve(int observed0,int observed1,int imputedallele,int fromallele, int nchr, double theta, double delta, int time, vector<ArrayQ *> & Q, int locus);
 
-
 // Inline member functions
 // Get allelic types
 
-inline double ClassPop::PriorProbFromCopyProb(int allele, int locus, vector<vector<double> > & CopyProb){
+inline double ClassPop::PriorProbFromCopyProb(int allele, int locus, vector<vector<double> > & CopyProb)
+{
    return CopyProb[locus][0] * PrHitTarg(locus, 2*Nind - 2, 0, 0,allele,Qptr) + CopyProb[locus][1] * PrHitTarg(locus, 2*Nind - 2, 1, 0, allele, Qptr) + CopyProb[locus][2] * PrHitTarg(locus, 2*Nind - 2, 0, 1, allele, Qptr) + CopyProb[locus][3] * PrHitTarg(locus,2*Nind - 2, 1, 1, allele, Qptr);
 }
 
-inline void ClassPop::ClearHapList(){
+inline void ClassPop::ClearHapList()
+{
   haplist.RemoveAll();
 }
 
-inline void ClassPop::OutputPositions(ostream & ostr){
-  for(int r=0;r<Nloci;r++)
+inline void ClassPop::OutputPositions(ostream & ostr)
+{
+  for(unsigned r=0;r<Nloci;r++)
      ostr << position[r] << ' ';
   ostr << endl;
 } 
 
-inline void ClassPop::output_all_correct_probs ( ostream & ostr){
+inline void ClassPop::output_all_correct_probs ( ostream & ostr)
+{
   for(int ind = 0; ind<Nind; ind++){
     pop[ind].output_overall_correct_prob(ostr);
     ostr << endl;
   }
 }
 
-inline double ClassPop::get_first_position ( ) const	{ 
+inline double ClassPop::get_first_position ( ) const
+{ 
   return position[0];
 }
 
-inline double ClassPop::get_last_position ( ) const	{ 
+inline double ClassPop::get_last_position ( ) const
+{ 
   return position[get_nloci()-1];
 }
 
-inline double ClassPop::get_position ( int r) const	{ 
+inline double ClassPop::get_position ( int r) const
+{ 
   return position[r];
 }
 
-
-inline double ClassPop::logpriorprobRhoMean(double oldval, double newval, double mu, double sigma) const {
+inline double ClassPop::logpriorprobRhoMean(double oldval, double newval, double mu, double sigma) const
+{
   double ov = log(oldval);
   double nv = log(newval);
   return (0.5/(sigma*sigma)) * ((ov - mu) * (ov -mu) - (nv - mu) * (nv - mu));
 }
 
-inline double ClassPop::get_physical_length ( ) const	{ 
+inline double ClassPop::get_physical_length ( ) const
+{ 
   return position[get_nloci()-1] - position[0];
 }
 
-
-inline int ClassPop::get_allele (int ind, int chr, int locus ) const	{ 
+inline int ClassPop::get_allele (int ind, int chr, int locus ) const
+{ 
     return pop[ind].get_allele(chr,locus); 
 }
 
-inline double ClassPop::GetBestLogProb () const	{ 
+inline double ClassPop::GetBestLogProb () const
+{ 
     return BestLogProb; 
 }
 
@@ -414,23 +378,28 @@ inline int ClassPop::get_phase (int ind, int locus ) const	{
     return pop[ind].get_phase(locus); 
 }
 
-inline int ClassPop::get_nloci() const {
+inline int ClassPop::get_nloci() const
+{
     return loci_type.size();
 }
 
-inline int ClassPop::get_nind() const {
+inline int ClassPop::get_nind() const
+{
     return pop.size();
 }
 
-inline char ClassPop::get_locus_type(int r) const {
+inline char ClassPop::get_locus_type(int r) const
+{
     return loci_type[r];
 }
 
-inline std::string ClassPop::get_loci_type() const {
+inline std::string ClassPop::get_loci_type() const
+{
     return loci_type;
 }
 
-inline std::vector<int> ClassPop::get_coding(int c) const {
+inline std::vector<int> ClassPop::get_coding(int c) const
+{
     return coding[c];
 }
 
@@ -444,11 +413,13 @@ inline void ClassPop::set_phase (int ind, int locus, int phase )
     pop[ind].set_phase(locus,phase); 
 }
 
-inline void ClassPop::flip(int ind){
+inline void ClassPop::flip(int ind)
+{
     pop[ind].flip_phase();
 }
 
-inline void ClassPop::flip_phase(int ind, int pos){
+inline void ClassPop::flip_phase(int ind, int pos)
+{
     pop[ind].flip_phase(pos);
 }
 

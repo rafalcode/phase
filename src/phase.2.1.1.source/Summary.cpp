@@ -70,7 +70,7 @@ Summary::~Summary()
 void Summary::Output( ostream & ostr, vector<int> * coding)
 {
   vector<int> tempcoding [2];
-  double startlocus = 0;
+  // double startlocus = 0; //unused.
   vector<int>::iterator codingstart0 = coding[0].begin();
   vector<int>::iterator codingstart1 = coding[1].begin();
   

@@ -1,28 +1,9 @@
-Script started on lun 28 jul 2014 15:45:35 CEST
-]0;nutria@fbx:~/github_rafalcode/phase/src/phase.2.1.1.source[0;32mnutria@fbx:~/github_rafalcode/phase/src/phase.2.1.1.source >[0;37m make ultraclean
+Script started on lun 28 jul 2014 17:23:16 CEST
+]0;nutria@fbx:~/github_rafalcode/phase/src/phase.2.1.1.source[0;32mnutria@fbx:~/github_rafalcode/phase/src/phase.2.1.1.source >[0;37m make clean
 rm -rf *.o
-rm -f phase
 ]0;nutria@fbx:~/github_rafalcode/phase/src/phase.2.1.1.source[0;32mnutria@fbx:~/github_rafalcode/phase/src/phase.2.1.1.source >[0;37m make
 g++ -Wall -DBIGDATASETS -I. -I.. -c phase.cpp
-In file included from /usr/include/c++/4.9.1/cassert:43:0,
-                 from indnode.hpp:18,
-                 from classpop.hpp:9,
-                 from phase.cpp:5:
-indnode.hpp: In member function ‘int CIndividual::n_missing(int) const’:
-indnode.hpp:368:20: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-     assert ( locus < missing.size() );
-                    ^
-indnode.hpp: In member function ‘int CIndividual::get_unknown_pos(int) const’:
-indnode.hpp:423:20: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-     assert ( count < unknown.size() );
-                    ^
 phase.cpp: In function ‘int main(int, char**)’:
-phase.cpp:144:31: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-                 for(int r=0; r<vecDelta.size(); r++)
-                               ^
-phase.cpp:149:31: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-                 for(int r=0; r<vecDelta.size(); r++)
-                               ^
 phase.cpp:206:24: warning: unused variable ‘MeanRhoStart’ [-Wunused-variable]
                  double MeanRhoStart = d_cmdoptions["rhostart"];
                         ^
@@ -35,17 +16,6 @@ In file included from /usr/include/c++/4.9.1/backward/strstream:51:0,
 /usr/include/c++/4.9.1/backward/backward_warning.h:32:2: warning: #warning This file includes at least one deprecated or antiquated header which may be removed without further notice at a future date. Please use a non-deprecated interface with equivalent functionality instead. For a listing of replacement headers and interfaces, consult the file backward_warning.h. To disable this warning use -Wno-deprecated. [-Wcpp]
  #warning \
   ^
-In file included from /usr/include/c++/4.9.1/cassert:43:0,
-                 from indnode.hpp:18,
-                 from indnode.cpp:6:
-indnode.hpp: In member function ‘int CIndividual::n_missing(int) const’:
-indnode.hpp:368:20: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-     assert ( locus < missing.size() );
-                    ^
-indnode.hpp: In member function ‘int CIndividual::get_unknown_pos(int) const’:
-indnode.hpp:423:20: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-     assert ( count < unknown.size() );
-                    ^
 In file included from indnode.cpp:6:0:
 indnode.hpp: In constructor ‘CIndividual::CIndividual(std::string)’:
 indnode.hpp:48:20: warning: ‘CIndividual::recom’ will be initialized after [-Wreorder]
@@ -75,7 +45,7 @@ indnode.hpp:48:20: warning: ‘CIndividual::recom’ will be initialized after [
 indnode.hpp:47:20: warning:   ‘std::vector<int> CIndividual::missing’ [-Wreorder]
    std::vector<int> missing;
                     ^
-indnode.cpp:74:1: warning:   when initialized here [-Wreorder]
+indnode.cpp:72:1: warning:   when initialized here [-Wreorder]
  CIndividual::CIndividual( const CIndividual & C ) :
  ^
 In file included from indnode.cpp:6:0:
@@ -85,7 +55,7 @@ indnode.hpp:56:23: warning: ‘CIndividual::known’ will be initialized after [
 indnode.hpp:30:23: warning:   ‘std::vector<Haplotype> CIndividual::phenotype’ [-Wreorder]
      vector<Haplotype> phenotype; // stores current guess of genotype
                        ^
-indnode.cpp:74:1: warning:   when initialized here [-Wreorder]
+indnode.cpp:72:1: warning:   when initialized here [-Wreorder]
  CIndividual::CIndividual( const CIndividual & C ) :
  ^
 In file included from indnode.cpp:6:0:
@@ -95,10 +65,10 @@ indnode.hpp:37:29: warning: ‘CIndividual::PhaseCount’ will be initialized af
 indnode.hpp:36:39: warning:   ‘std::vector<std::vector<std::vector<float> > > CIndividual::AlleleCount’ [-Wreorder]
      vector< vector< vector<float> > > AlleleCount;
                                        ^
-indnode.cpp:74:1: warning:   when initialized here [-Wreorder]
+indnode.cpp:72:1: warning:   when initialized here [-Wreorder]
  CIndividual::CIndividual( const CIndividual & C ) :
  ^
-indnode.cpp:94:9: warning: unused variable ‘nloci’ [-Wunused-variable]
+indnode.cpp:92:9: warning: unused variable ‘nloci’ [-Wunused-variable]
      int nloci = C.phase.size();
          ^
 In file included from indnode.cpp:6:0:
@@ -109,7 +79,7 @@ indnode.hpp:48:20: warning: ‘CIndividual::recom’ will be initialized after [
 indnode.hpp:47:20: warning:   ‘std::vector<int> CIndividual::missing’ [-Wreorder]
    std::vector<int> missing;
                     ^
-indnode.cpp:102:1: warning:   when initialized here [-Wreorder]
+indnode.cpp:100:1: warning:   when initialized here [-Wreorder]
  CIndividual::CIndividual( const CIndividual & C, int firstlocus, int lastlocus ) :
  ^
 In file included from indnode.cpp:6:0:
@@ -119,7 +89,7 @@ indnode.hpp:56:23: warning: ‘CIndividual::known’ will be initialized after [
 indnode.hpp:30:23: warning:   ‘std::vector<Haplotype> CIndividual::phenotype’ [-Wreorder]
      vector<Haplotype> phenotype; // stores current guess of genotype
                        ^
-indnode.cpp:102:1: warning:   when initialized here [-Wreorder]
+indnode.cpp:100:1: warning:   when initialized here [-Wreorder]
  CIndividual::CIndividual( const CIndividual & C, int firstlocus, int lastlocus ) :
  ^
 In file included from indnode.cpp:6:0:
@@ -130,7 +100,7 @@ indnode.hpp:56:23: warning: ‘CIndividual::known’ will be initialized after [
 indnode.hpp:48:20: warning:   ‘std::vector<int> CIndividual::recom’ [-Wreorder]
    std::vector<int> recom; // list of sites after which a recom occurs in transmission from this ind
                     ^
-indnode.cpp:177:1: warning:   when initialized here [-Wreorder]
+indnode.cpp:175:1: warning:   when initialized here [-Wreorder]
  CIndividual::CIndividual( const CIndividual & C1,  const CIndividual & C2 ) :
  ^
 In file included from indnode.cpp:6:0:
@@ -140,91 +110,21 @@ indnode.hpp:48:20: warning: ‘CIndividual::recom’ will be initialized after [
 indnode.hpp:30:23: warning:   ‘std::vector<Haplotype> CIndividual::phenotype’ [-Wreorder]
      vector<Haplotype> phenotype; // stores current guess of genotype
                        ^
-indnode.cpp:177:1: warning:   when initialized here [-Wreorder]
+indnode.cpp:175:1: warning:   when initialized here [-Wreorder]
  CIndividual::CIndividual( const CIndividual & C1,  const CIndividual & C2 ) :
  ^
 indnode.cpp: In destructor ‘CIndividual::~CIndividual()’:
-indnode.cpp:271:9: warning: unused variable ‘nloci’ [-Wunused-variable]
+indnode.cpp:269:9: warning: unused variable ‘nloci’ [-Wunused-variable]
      int nloci = phase.size();
          ^
-indnode.cpp: In member function ‘Haplotype CIndividual::get_haplotype(int) const’:
-indnode.cpp:334:29: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-   for (int locus = 0; locus < phase.size(); ++locus) {
-                             ^
-indnode.cpp: In member function ‘int CIndividual::read_orig_phenotypes(std::istream&, const string&, int, int)’:
-indnode.cpp:365:40: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-             for ( int locus = 0; locus < loci_type.size(); ++locus) {
-                                        ^
-indnode.cpp:371:36: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-         for ( int locus = 0; locus < loci_type.size(); ++locus ) {
-                                    ^
-indnode.cpp:378:34: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-       for ( int locus = 0; locus < loci_type.size(); ++locus ) { 
-                                  ^
-indnode.cpp: In member function ‘void CIndividual::print_phenotypes(std::ostream&, const string&, const std::vector<int>*) const’:
-indnode.cpp:442:35: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-         for (int locus = 0; locus < loci_type.size(); ++locus ) {
-                                   ^
-indnode.cpp: In member function ‘int CIndividual::BestAllele(int, int) const’:
-indnode.cpp:460:17: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-   for(int j=1; j<AlleleCount[chr][locus].size(); j++){
-                 ^
-indnode.cpp: In member function ‘double CIndividual::BestAlleleProb(int, int) const’:
-indnode.cpp:470:17: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-   for(int j=0; j<AlleleCount[chr][locus].size(); j++){
-                 ^
-indnode.cpp: In member function ‘Haplotype CIndividual::BestHaplotype(int) const’:
-indnode.cpp:506:29: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-   for (int locus = 0; locus < phase.size(); ++locus) {
-                             ^
-indnode.cpp: In member function ‘void CIndividual::print_haplotype(int, std::ostream&, const string&, const std::vector<int>*, bool, bool, bool, double, double) const’:
-indnode.cpp:600:29: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-   for (int locus = 0; locus < loci_type.size(); ++locus ) 
-                             ^
-indnode.cpp: In member function ‘void CIndividual::print_phase(std::ostream&, bool) const’:
-indnode.cpp:619:23: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-     for (int r = 0; r < phase.size(); ++r) {
-                       ^
-indnode.cpp: In member function ‘void CIndividual::print_phase_prob(std::ostream&, bool) const’:
-indnode.cpp:632:23: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-     for (int r = 0; r < phase.size(); ++r) {
-                       ^
-indnode.cpp: In member function ‘int CIndividual::initialize(int, std::istream&, int, std::istream&, const string&)’:
-indnode.cpp:652:31: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-     for (int locus = 0; locus < phase.size(); ++locus) {
-                               ^
-indnode.cpp:710:33: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-       for (int locus = 0; locus < phase.size(); ++locus) {
-                                 ^
-indnode.cpp:784:33: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-       for (int locus = 0; locus < phase.size(); ++locus) {
-                                 ^
-indnode.cpp: In member function ‘void CIndividual::ResetCounts()’:
-indnode.cpp:830:21: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-       for(int j=0; j< AlleleCount[c][r].size(); j++){
-                     ^
 indnode.cpp: In member function ‘void CIndividual::TransferCounts(Summary&)’:
-indnode.cpp:935:33: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-   for (int segment = 0; segment < sum.alleleprob.size(); segment++){
-                                 ^
-indnode.cpp:936:27: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-     for (int pos = 0; pos < sum.alleleprob[segment].size(); pos++){
-                           ^
-indnode.cpp:937:34: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-       for(int allele = 0; allele < AlleleCount[0][locus].size(); allele++){
-                                  ^
-indnode.cpp: In function ‘bool CanBeFoundAtAll(const Haplotype&, const std::vector<CIndividual>&)’:
-indnode.cpp:957:24: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-   for(int ind = 0; ind < pop.size(); ind++){
-                        ^
+indnode.cpp:935:12: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  if(allele != sum.bestguess[segment].first.get_allele(pos))
+            ^
+indnode.cpp:939:12: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  if(allele != sum.bestguess[segment].second.get_allele(pos))
+            ^
 g++ -Wall -DBIGDATASETS -I. -I.. -c utility.cpp
-utility.cpp: In function ‘int rint2(const std::vector<double>&, double)’:
-utility.cpp:486:31: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-             for (int i = 0; i < prob.size() - 1; ++i) {
-                               ^
-utility.cpp:495:31: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-             for (int i = 0; i < cumprob.size() - 1; ++i) {
-                               ^
 g++ -Wall -DBIGDATASETS -I. -I.. -c arrayQ.cpp
 In file included from arrayQ.cpp:8:0:
 arrayQ.hpp: In constructor ‘ArrayQ::ArrayQ()’:
@@ -238,72 +138,22 @@ arrayQ.cpp:19:1: warning:   when initialized here [-Wreorder]
  ArrayQ::ArrayQ ():
  ^
 g++ -Wall -DBIGDATASETS -I. -I.. -c arrayFF.cpp
-In file included from /usr/include/c++/4.9.1/cassert:43:0,
-                 from indnode.hpp:18,
-                 from arrayFF.hpp:14,
-                 from arrayFF.cpp:5:
-indnode.hpp: In member function ‘int CIndividual::n_missing(int) const’:
-indnode.hpp:368:20: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-     assert ( locus < missing.size() );
-                    ^
-indnode.hpp: In member function ‘int CIndividual::get_unknown_pos(int) const’:
-indnode.hpp:423:20: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-     assert ( count < unknown.size() );
-                    ^
+arrayFF.cpp: In member function ‘void ArrayFF::compute(int, const std::vector<ArrayQ*>&, const ArrayDiffProb&, const ArrayDiploidDiffProb&, const std::vector<CIndividual>&, const string&)’:
+arrayFF.cpp:162:25: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  for (unsigned u = 0; u < num_unknown; ++u) { 
+                         ^
+arrayFF.cpp:195:27: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+    for (unsigned u = 0; u < num_unknown; ++u) { 
+                           ^
 g++ -Wall -DBIGDATASETS -I. -I.. -c arrayCC.cpp
-In file included from /usr/include/c++/4.9.1/cassert:43:0,
-                 from indnode.hpp:18,
-                 from arrayCC.hpp:7,
-                 from arrayCC.cpp:1:
-indnode.hpp: In member function ‘int CIndividual::n_missing(int) const’:
-indnode.hpp:368:20: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-     assert ( locus < missing.size() );
-                    ^
-indnode.hpp: In member function ‘int CIndividual::get_unknown_pos(int) const’:
-indnode.hpp:423:20: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-     assert ( count < unknown.size() );
-                    ^
 g++ -Wall -DBIGDATASETS -I. -I.. -c arrayDiffProb.cpp
-arrayDiffProb.cpp: In member function ‘void ArrayDiffProb::CalcDiffProb(const std::vector<ArrayQ*>&, const string&)’:
-arrayDiffProb.cpp:86:47: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-   while((LociType[firstSNP]!='S') && (firstSNP<(LociType.size()-1)))
-                                               ^
 g++ -Wall -DBIGDATASETS -I. -I.. -c arrayDiploidDiffProb.cpp
-arrayDiploidDiffProb.cpp: In member function ‘void ArrayDiploidDiffProb::CalcDiploidDiffProb(const std::vector<ArrayQ*>&, const string&)’:
-arrayDiploidDiffProb.cpp:106:47: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-   while((LociType[firstSNP]!='S') && (firstSNP<(LociType.size()-1)))
-                                               ^
 g++ -Wall -DBIGDATASETS -I. -I.. -c arrayDiffCount.cpp
-In file included from /usr/include/c++/4.9.1/cassert:43:0,
-                 from indnode.hpp:18,
-                 from arrayCC.hpp:7,
-                 from arrayDiffCount.hpp:5,
-                 from arrayDiffCount.cpp:1:
-indnode.hpp: In member function ‘int CIndividual::n_missing(int) const’:
-indnode.hpp:368:20: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-     assert ( locus < missing.size() );
-                    ^
-indnode.hpp: In member function ‘int CIndividual::get_unknown_pos(int) const’:
-indnode.hpp:423:20: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-     assert ( count < unknown.size() );
-                    ^
 arrayDiffCount.cpp: In member function ‘void ArrayDiffCount::Update(int, const std::vector<CIndividual>&, int, int, int)’:
 arrayDiffCount.cpp:163:7: warning: unused variable ‘adjust’ [-Wunused-variable]
    int adjust;
        ^
 g++ -Wall -DBIGDATASETS -I. -I.. -c HapList2.cpp
-In file included from /usr/include/c++/4.9.1/cassert:43:0,
-                 from indnode.hpp:18,
-                 from HapList2.hpp:9,
-                 from HapList2.cpp:1:
-indnode.hpp: In member function ‘int CIndividual::n_missing(int) const’:
-indnode.hpp:368:20: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-     assert ( locus < missing.size() );
-                    ^
-indnode.hpp: In member function ‘int CIndividual::get_unknown_pos(int) const’:
-indnode.hpp:423:20: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-     assert ( count < unknown.size() );
-                    ^
 HapList2.cpp: In member function ‘void HapList::PrunePairsIndex(std::vector<std::vector<std::pair<std::_Rb_tree_iterator<std::pair<const Haplotype, HapRecord> >, std::_Rb_tree_iterator<std::pair<const Haplotype, HapRecord> > > > >&, std::vector<std::vector<double> >&, std::vector<CIndividual>&, double)’:
 HapList2.cpp:555:8: warning: unused variable ‘found’ [-Wunused-variable]
    bool found;
@@ -312,18 +162,6 @@ HapList2.cpp: In member function ‘std::vector<Summary> HapList::ProduceSummary
 HapList2.cpp:1157:9: warning: variable ‘bestsplitlocus’ set but not used [-Wunused-but-set-variable]
      int bestsplitlocus = 0;
          ^
-HapList2.cpp: In member function ‘double HapList::FDLSProb(const Haplotype&, const std::vector<ArrayQ*>&, int, std::vector<double>&, std::vector<double>&, bool, bool, std::vector<int>, const std::vector<double>&, int, bool)’:
-HapList2.cpp:1410:29: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-       for(int locus=0; locus<TransProb.size(); locus++){
-                             ^
-HapList2.cpp: In member function ‘double HapList::ForwardsAlgorithm(const Haplotype&, const std::vector<ArrayQ*>&, int, std::vector<double>&, std::vector<std::vector<double> >&, std::vector<double>&, bool, const std::vector<int>&, bool, const std::vector<double>&, int)’:
-HapList2.cpp:1470:25: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-   for(int locus=0; locus<TransProb.size(); locus++)
-                         ^
-HapList2.cpp: In member function ‘void HapList::BackwardsAlgorithm(const Haplotype&, int, std::vector<double>&, std::vector<std::vector<double> >&, std::vector<double>&, std::vector<int>&, std::vector<int>&, std::vector<int>&, bool)’:
-HapList2.cpp:1555:28: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-   for(int locus = 0; locus < TransProb.size(); locus++){ 
-                            ^
 HapList2.cpp: In member function ‘void HapList::ComputeHiddenStateProbs(std::vector<std::vector<double> >&, const Haplotype&, const std::vector<ArrayQ*>&, int, std::vector<double>&, bool, const std::vector<int>&, const std::vector<double>&, int)’:
 HapList2.cpp:1626:10: warning: unused variable ‘a’ [-Wunused-variable]
    double a=ForwardsAlgorithm(h, Q, nchr, vecRho, Alpha, AlphaSum, usequad, isunknown, false , vecTheta, Nforcorrection );
@@ -331,10 +169,6 @@ HapList2.cpp:1626:10: warning: unused variable ‘a’ [-Wunused-variable]
 HapList2.cpp:1627:10: warning: unused variable ‘b’ [-Wunused-variable]
    double b=ForwardsAlgorithm(h, Q, nchr, vecRho, Beta, BetaSum, usequad, isunknown, true , vecTheta, Nforcorrection );
           ^
-HapList2.cpp: In member function ‘double HapList::FuzzyForwardsAlgorithm(const Haplotype&, const std::vector<ArrayQ*>&, int, std::vector<double>&, std::vector<std::vector<double> >&, std::vector<double>&, bool, const std::vector<int>&, bool, const std::vector<double>&, int)’:
-HapList2.cpp:1753:25: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-   for(int locus=0; locus<TransProb.size(); locus++)
-                         ^
 HapList2.cpp: In member function ‘double HapList::CalcProb(const Haplotype&, char, std::vector<ArrayQ*>&, int, std::vector<double>&, double, const std::vector<int>&, bool, const std::vector<double>&, bool)’:
 HapList2.cpp:1248:1: warning: control reaches end of non-void function [-Wreturn-type]
  }
@@ -351,23 +185,7 @@ Haplotype.hpp:13:17: warning:   ‘std::vector<float> Haplotype::h’ [-Wreorder
 Haplotype.cpp:5:1: warning:   when initialized here [-Wreorder]
  Haplotype::Haplotype(string lt):
  ^
-Haplotype.cpp: In member function ‘void Haplotype::print_haplotype(std::ostream&, const std::vector<int>*) const’:
-Haplotype.cpp:70:26: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-   for(int locus =0; locus<h.size(); locus++){
-                          ^
 g++ -Wall -DBIGDATASETS -I. -I.. -c classpop.cpp
-In file included from /usr/include/c++/4.9.1/cassert:43:0,
-                 from indnode.hpp:18,
-                 from classpop.hpp:9,
-                 from classpop.cpp:6:
-indnode.hpp: In member function ‘int CIndividual::n_missing(int) const’:
-indnode.hpp:368:20: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-     assert ( locus < missing.size() );
-                    ^
-indnode.hpp: In member function ‘int CIndividual::get_unknown_pos(int) const’:
-indnode.hpp:423:20: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-     assert ( count < unknown.size() );
-                    ^
 In file included from classpop.cpp:6:0:
 classpop.hpp: In constructor ‘ClassPop::ClassPop()’:
 classpop.hpp:35:23: warning: ‘ClassPop::pop’ will be initialized after [-Wreorder]
@@ -594,97 +412,88 @@ classpop.cpp:309:1: warning:   when initialized here [-Wreorder]
  ClassPop::ClassPop ( const ClassPop & CP1, const ClassPop & CP2, map<string, int> & cmds, int Niter, double theta, vector<double> & vecDelta, map<string, double> & d_cmds, double minfreq ) :
  ^
 classpop.cpp: In member function ‘void ClassPop::read_data(std::istream&, std::map<std::basic_string<char>, int>&, std::map<std::basic_string<char>, double>&, std::map<std::basic_string<char>, std::basic_string<char> >&)’:
-classpop.cpp:536:27: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+classpop.cpp:534:27: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
     while( position.size() < Nloci){
                            ^
-classpop.cpp:565:27: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+classpop.cpp:563:27: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
   while ( loci_type.size() < Nloci ) {
                            ^
 classpop.cpp: In member function ‘void ClassPop::initialize(std::istream&, std::istream&, int, int, double, std::vector<double>&, int)’:
-classpop.cpp:699:7: warning: unused variable ‘count’ [-Wunused-variable]
+classpop.cpp:697:7: warning: unused variable ‘count’ [-Wunused-variable]
    int count = 0;
        ^
 classpop.cpp: In member function ‘void ClassPop::GibbsUpdate(int, double)’:
-classpop.cpp:1073:7: warning: unused variable ‘c’ [-Wunused-variable]
+classpop.cpp:1071:7: warning: unused variable ‘c’ [-Wunused-variable]
    int c,r,r0,newhappos;
        ^
-classpop.cpp:1073:9: warning: unused variable ‘r’ [-Wunused-variable]
+classpop.cpp:1071:9: warning: unused variable ‘r’ [-Wunused-variable]
    int c,r,r0,newhappos;
          ^
-classpop.cpp:1073:11: warning: unused variable ‘r0’ [-Wunused-variable]
+classpop.cpp:1071:11: warning: unused variable ‘r0’ [-Wunused-variable]
    int c,r,r0,newhappos;
            ^
-classpop.cpp:1101:10: warning: unused variable ‘randprob’ [-Wunused-variable]
+classpop.cpp:1099:10: warning: unused variable ‘randprob’ [-Wunused-variable]
    double randprob=exp(2*(log(dirprior)-Nloci*log(2.0)) + (pop[n1].numunknown()-1)*log(2.0));
           ^
 classpop.cpp: In member function ‘void ClassPop::update_phase_NR(int, ArrayFF&, const ArrayDiffProb&, const ArrayDiploidDiffProb&)’:
-classpop.cpp:1906:9: warning: unused variable ‘r’ [-Wunused-variable]
+classpop.cpp:1904:9: warning: unused variable ‘r’ [-Wunused-variable]
      int r = 0;
          ^
 classpop.cpp: In member function ‘int ClassPop::update_phase_NR_fastestforsmallr(int, const ArrayDiffProb&, int)’:
-classpop.cpp:2014:27: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+classpop.cpp:2011:27: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
      if( updatelist.size() > maxnpos) {
                            ^
-classpop.cpp:2019:47: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+classpop.cpp:2016:47: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
          for(unsigned i = updatelist.size(); i > maxnpos; --i){
                                                ^
 classpop.cpp: In member function ‘bool ClassPop::updateRhoSimpleHotspot(bool, std::map<std::basic_string<char>, double>&)’:
-classpop.cpp:2449:8: warning: unused variable ‘accept’ [-Wunused-variable]
+classpop.cpp:2446:8: warning: unused variable ‘accept’ [-Wunused-variable]
    bool accept;
         ^
-classpop.cpp:2450:10: warning: unused variable ‘lpriorratio’ [-Wunused-variable]
+classpop.cpp:2447:10: warning: unused variable ‘lpriorratio’ [-Wunused-variable]
    double lpriorratio;
           ^
 classpop.cpp: In member function ‘double ClassPop::BuddyHapListMCMCResolvePhaseRemove(std::map<std::basic_string<char>, int>&, int, int, int, std::map<std::basic_string<char>, double>&, std::string, bool)’:
-classpop.cpp:2911:5: warning: suggest explicit braces to avoid ambiguous ‘else’ [-Wparentheses]
+classpop.cpp:2908:5: warning: suggest explicit braces to avoid ambiguous ‘else’ [-Wparentheses]
    if(method == 'Q') // for Q method, use no recom, except on the final run
      ^
-classpop.cpp:3438:11: warning: unused variable ‘p’ [-Wunused-variable]
+classpop.cpp:3445:32: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   for(unsigned locus = 0; locus< Nloci; locus++){
+                                ^
+classpop.cpp:3435:11: warning: unused variable ‘p’ [-Wunused-variable]
     double p;
            ^
-classpop.cpp:2898:10: warning: unused variable ‘rho’ [-Wunused-variable]
+classpop.cpp:2895:10: warning: unused variable ‘rho’ [-Wunused-variable]
    double rho = d_cmds["rhostart"];
           ^
-classpop.cpp:2990:8: warning: unused variable ‘found’ [-Wunused-variable]
+classpop.cpp:2987:8: warning: unused variable ‘found’ [-Wunused-variable]
    bool found;
         ^
 classpop.cpp: In member function ‘double ClassPop::HapListMCMCResolvePhaseRemove(std::map<std::basic_string<char>, int>&, int, int, int, std::map<std::basic_string<char>, double>&, std::string, bool)’:
-classpop.cpp:3758:5: warning: suggest explicit braces to avoid ambiguous ‘else’ [-Wparentheses]
+classpop.cpp:3755:5: warning: suggest explicit braces to avoid ambiguous ‘else’ [-Wparentheses]
    if(method == 'Q') // for Q method, use no recom, except on the final run
      ^
-classpop.cpp:3745:10: warning: unused variable ‘rho’ [-Wunused-variable]
+classpop.cpp:3742:10: warning: unused variable ‘rho’ [-Wunused-variable]
    double rho = d_cmds["rhostart"];
           ^
-classpop.cpp:3838:8: warning: unused variable ‘found’ [-Wunused-variable]
+classpop.cpp:3835:8: warning: unused variable ‘found’ [-Wunused-variable]
    bool found;
         ^
 classpop.cpp: In member function ‘double ClassPop::FuzzyHapListMCMCResolvePhaseRemove(std::map<std::basic_string<char>, int>&, int, int, int, std::map<std::basic_string<char>, double>&, std::string, bool)’:
-classpop.cpp:4428:5: warning: suggest explicit braces to avoid ambiguous ‘else’ [-Wparentheses]
+classpop.cpp:4425:5: warning: suggest explicit braces to avoid ambiguous ‘else’ [-Wparentheses]
    if(method == 'Q') // for Q method, use no recom, except on the final run
      ^
-classpop.cpp:4415:10: warning: unused variable ‘rho’ [-Wunused-variable]
+classpop.cpp:4412:10: warning: unused variable ‘rho’ [-Wunused-variable]
    double rho = d_cmds["rhostart"];
           ^
-classpop.cpp:4507:8: warning: unused variable ‘found’ [-Wunused-variable]
+classpop.cpp:4504:8: warning: unused variable ‘found’ [-Wunused-variable]
    bool found;
         ^
 classpop.cpp: In member function ‘int ClassPop::update_phase_NR_fastestforsmallr(int, const ArrayDiffProb&, int)’:
-classpop.cpp:2069:1: warning: control reaches end of non-void function [-Wreturn-type]
+classpop.cpp:2066:1: warning: control reaches end of non-void function [-Wreturn-type]
  }
  ^
 g++ -Wall -DBIGDATASETS -I. -I.. -c recom.cpp
-In file included from /usr/include/c++/4.9.1/cassert:43:0,
-                 from indnode.hpp:18,
-                 from classpop.hpp:9,
-                 from recom.cpp:1:
-indnode.hpp: In member function ‘int CIndividual::n_missing(int) const’:
-indnode.hpp:368:20: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-     assert ( locus < missing.size() );
-                    ^
-indnode.hpp: In member function ‘int CIndividual::get_unknown_pos(int) const’:
-indnode.hpp:423:20: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-     assert ( count < unknown.size() );
-                    ^
 recom.cpp: In member function ‘void ClassPop::resolve_phase_R(double, double, int, int, int, std::ostream&, std::ostream&, std::vector<double>&, int)’:
 recom.cpp:71:12: warning: unused variable ‘currentbest’ [-Wunused-variable]
      double currentbest=-1e100;
@@ -695,10 +504,6 @@ recom.cpp:72:12: warning: unused variable ‘lastlogprob’ [-Wunused-variable]
 recom.cpp:75:12: warning: unused variable ‘oldlogprob’ [-Wunused-variable]
      double oldlogprob = -1e100;
             ^
-recom.cpp: In member function ‘double ClassPop::DiploidForwardsAlg(std::vector<std::vector<double> >&, int, std::vector<double>&)’:
-recom.cpp:774:20: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-   for(int r = 1; r < loci_type.size(); ++r) {
-                    ^
 recom.cpp: In member function ‘void ClassPop::DiploidBackwardsAlg(int, double, double, std::vector<std::vector<double> >&, std::vector<double>&, double, std::vector<std::vector<int> >&, std::vector<std::vector<int> >&, std::vector<std::vector<int> >&)’:
 recom.cpp:947:9: warning: unused variable ‘observedallele0’ [-Wunused-variable]
      int observedallele0 = pop[n].get_orig_allele(0,r);
@@ -707,18 +512,6 @@ recom.cpp:948:9: warning: unused variable ‘observedallele1’ [-Wunused-variab
      int observedallele1 = pop[n].get_orig_allele(1,r);    
          ^
 g++ -Wall -DBIGDATASETS -I. -I.. -c HapPairList.cpp
-In file included from /usr/include/c++/4.9.1/cassert:43:0,
-                 from indnode.hpp:18,
-                 from HapPairList.hpp:10,
-                 from HapPairList.cpp:1:
-indnode.hpp: In member function ‘int CIndividual::n_missing(int) const’:
-indnode.hpp:368:20: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-     assert ( locus < missing.size() );
-                    ^
-indnode.hpp: In member function ‘int CIndividual::get_unknown_pos(int) const’:
-indnode.hpp:423:20: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-     assert ( count < unknown.size() );
-                    ^
 g++ -Wall -DBIGDATASETS -I. -I.. -c Summary.cpp
 Summary.cpp: In member function ‘void Summary::Output(std::ostream&, std::vector<int>*)’:
 Summary.cpp:73:10: warning: unused variable ‘startlocus’ [-Wunused-variable]
@@ -730,4 +523,4 @@ g++ -Wall -DBIGDATASETS -I. -I.. -I. -I.. phase.o indnode.o utility.o arrayQ.o a
 ]0;nutria@fbx:~/github_rafalcode/phase/src/phase.2.1.1.source[0;32mnutria@fbx:~/github_rafalcode/phase/src/phase.2.1.1.source >[0;37m exit
 exit
 
-Script done on lun 28 jul 2014 15:46:15 CEST
+Script done on lun 28 jul 2014 17:23:44 CEST

@@ -160,7 +160,7 @@ void ArrayDiffCount::Update( int id,
   int targ0 = pop[id].get_haplotype (0, locus);
   int targ1 = pop[id].get_haplotype (1, locus);
   int from;
-  int adjust;
+  // int adjust; // unused.
 
   //if targ0==targ1, no update needed; otherwise...
   if((targ0 != oldtarg0) || (targ1 != oldtarg1))

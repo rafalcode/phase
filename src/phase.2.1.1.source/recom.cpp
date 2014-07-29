@@ -68,11 +68,11 @@ void ClassPop::resolve_phase_R ( double thetainit, double totalrho,
     double temperature;
  
     double currentlogprob;
-    double currentbest=-1e100;
-    double lastlogprob=-1e100;
+    // double currentbest=-1e100; // unused.
+    // double lastlogprob=-1e100;
 
     SaveCurrentState();
-    double oldlogprob = -1e100;
+    // double oldlogprob = -1e100;
 
     for (int iter = 0; iter < Nburn; ++iter) {
       if ( iter % ITPRINT == 0 ) {
@@ -944,8 +944,9 @@ void ClassPop::DiploidBackwardsAlg ( int n, double theta, double delta, vector<v
     CopiedChr[1][r] = ccopy1;
     CopiedTime[1][r] = tcopy1;
 
-    int observedallele0 = pop[n].get_orig_allele(0,r);
-    int observedallele1 = pop[n].get_orig_allele(1,r);    
+    // // these two unused:
+    // int observedallele0 = pop[n].get_orig_allele(0,r);
+    // int observedallele1 = pop[n].get_orig_allele(1,r);    
     int imputedallele0 = pop[n].get_haplotype(0,r);
     int imputedallele1 = pop[n].get_haplotype(1,r);
 

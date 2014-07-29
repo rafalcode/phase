@@ -45,3 +45,20 @@ so this simple replacement of ostrstream with ostringstream is not so straightfo
 
 But also, it's pretty hard to see what's being done, because ostrstream is just discarded pretty much. The value of interest is idstring, which is a normal char*o
 the incredible thing is, that the delcaration/function seems to operate on idstring. COde looks flimsy.
+
+
+Well I'd got to a fairly low level of warnings, 
+and went about cleaning up Haplotype.{h,c}pp
+and things were OK.
+
+Then suddenly I hit something that had occurred before and had never been able to work out.
+It's the TNT habit of including tnt/version.h
+when version.h is in the current directory.
+
+Well maybe when it's included form the directory above it.
+but I wasn't even touching this!
+
+
+Indeed! I wne tover to an untouched version, and all of a sudden this error is rearign its head!
+But the truth is I don't know how these relative paths ont he include actuallyworked in the firt place!
+What's going on?

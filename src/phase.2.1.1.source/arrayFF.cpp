@@ -104,10 +104,7 @@ void ArrayFF::sample_froms ( int id,
     with time t1, given the observed genotypes of id.
 */
 
-void ArrayFF::compute ( int id,
-                        const vector<ArrayQ *> & Q, const ArrayDiffProb & DiffProb, 
-			const ArrayDiploidDiffProb & DiploidDiffProb,
-                        const vector<CIndividual> & pop, const std::string & loci_type )
+void ArrayFF::compute(int id, const vector<ArrayQ *> & Q, const ArrayDiffProb & DiffProb, const ArrayDiploidDiffProb &DiploidDiffProb, const vector<CIndividual> &pop, const std::string &loci_type)
 {
     int ptr = 0;
     int from0 = 0;
@@ -145,7 +142,7 @@ void ArrayFF::compute ( int id,
     total_sum=0;
      
     CC.compute(id,Q,pop,pop[id].get_known_pos(),loci_type,DiffProb);
-    int num_unknown= pop[id].numunknown();
+    unsigned num_unknown= pop[id].numunknown();
 
     vector<int> diff(4);
     

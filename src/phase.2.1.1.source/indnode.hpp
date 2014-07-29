@@ -20,42 +20,35 @@
 #include <functional>
 using namespace::std;
 
-class CIndividual {
-
+class CIndividual
+{
     // Static members
-    static int counts;                   // Number of individuals
-  
-    string id;                           // id
-
+    static int counts; // Number of individuals
+    string id;
     vector<Haplotype> phenotype; // stores current guess of genotype
     vector<vector<int> > orig_phenotype; // stores original genotype 
     vector<vector<int> > saved_hap; // stores an old guess for the phenoty
- 
     vector<vector<int> > Z; // stores which anc hap copied by this ind
-
-    vector< vector< vector<float> > > AlleleCount;
-    vector< vector<float> > PhaseCount;
+    vector<vector<vector<float> > > AlleleCount;
+    vector<vector<float> > PhaseCount;
   
-    // phase[r] = {0, 1} the phase of the r th locus 
-    std::vector<int> phase;
-
+    vector<int> phase; // phase[r] = {0, 1} the phase of the r th locus 
 
     /* missing[r] = {0, 1, 2} for r = 0 .. (nloci - 1)
        number of missing alleles at locus r.
        If there is one missing allele, then phenotype[r][0]
        is observed and phenotype[r][1] is missing  */
-  std::vector<int> missing;
-  std::vector<int> recom; // list of sites after which a recom occurs in transmission from this ind
+  vector<int> missing;
+  vector<int> recom; // list of sites after which a recom occurs in transmission from this ind
   // (used in trios case)
 
-  std::vector<int>  notmissing_list; //list of loci with no missing data
+  vector<int>  notmissing_list; //list of loci with no missing data
    
     /* unknown[i] = {0 .. (nloci - 1)}, index of the i th
        unknown phase locus */   
     std::vector<int>  unknown; // phase unknown loci 
     std::vector<int>  known; // phase known loci
     double overall_correct_prob; // overall prob that phase is correct (used by HapList2)
-
 
 public:
   const CIndividual & operator= (const CIndividual & );
@@ -197,8 +190,7 @@ Haplotype GetCompHap(const Haplotype & h, const CIndividual & ind, bool & found,
 Haplotype GetCompHap(const Haplotype & h, const CIndividual & ind, bool & found,vector<int> & matches, bool checkmissing = true); // returns Complementary haplotype in individual ind, if can be found (otherwise found is returned as false)
 //matches says which chrom in ind matches h at each unknown position
 
-// return whether h can possibly be found in pop
-bool CanBeFoundAtAll(const Haplotype & h, const vector<CIndividual> & pop);
+bool CanBeFoundAtAll(const Haplotype & h, const vector<CIndividual> & pop); // return whether h can possibly be found in pop
 
 int NDiff(const std::vector<CIndividual> & pop, int n0, int c0, int n1, int c1, const std::vector<int> & uselist); // finds number of diffs
 
@@ -242,12 +234,12 @@ inline void CIndividual::set_id ( istream & istr ) { istr >> id; }
 inline void CIndividual::set_id ( const string & nid ) { id = nid; }
 
 // Set Z value
-inline void CIndividual::set_Z ( int chr, int locus, int a ) 
+inline void CIndividual::set_Z (int chr, int locus, int a) 
 { 
   Z[chr][locus] = a;
 }
 
-inline char CIndividual::get_locus_type( int locus) const
+inline char CIndividual::get_locus_type(int locus) const
 {
   return phenotype[0].get_locus_type()[locus];
 }
@@ -257,26 +249,27 @@ inline int CIndividual::get_Z ( int chr, int locus)
   return Z[chr][locus];
 }
 
-
-// Get allelic types
-inline int CIndividual::get_allele ( int chr, int locus ) const { 
+inline int CIndividual::get_allele ( int chr, int locus ) const // Get allelic types
+{
     return phenotype[chr].get_allele(locus); 
 }
  
-inline int CIndividual::get_orig_allele ( int chr, int locus ) const { 
+inline int CIndividual::get_orig_allele ( int chr, int locus ) const
+{ 
     return orig_phenotype[chr][locus]; 
 }
  
-inline int CIndividual::get_orig_nonmissing_allele ( int locus ) const { 
+inline int CIndividual::get_orig_nonmissing_allele ( int locus ) const
+{ 
   return (orig_phenotype[0][locus] != MISSMS) ? orig_phenotype[0][locus] : orig_phenotype[1][locus]; 
 }
  
-inline int CIndividual::missingchr ( int locus ) const { 
+inline int CIndividual::missingchr ( int locus ) const
+{ 
     return (orig_phenotype[0][locus] == MISSMS) ? 0 : 1; 
 }
  
-// Set allelic types
-inline void CIndividual::set_allele ( int chr, int locus, int allele ) 
+inline void CIndividual::set_allele ( int chr, int locus, int allele ) // Set allelic types
 { 
   phenotype[chr].set_allele(locus,allele);
   //orig_phenotype[chr][locus] = allele;  
@@ -286,8 +279,6 @@ inline void CIndividual::set_original_allele ( int chr, int locus, int allele )
 { 
   orig_phenotype[chr][locus] = allele;  
 }
-
-
 
 inline void CIndividual::update_haplotype ( int chr, int locus, int allele ) 
 { 
@@ -299,7 +290,7 @@ inline void CIndividual::update_haplotype ( int chr, int locus, int allele )
     phenotype[1-phase[locus]].set_allele(locus,allele);
 }
 
-inline void CIndividual::update_haplotype ( int chr, const Haplotype & h) 
+inline void CIndividual::update_haplotype(int chr, const Haplotype &h) 
 { 
   unsigned Nloci = phase.size(); 
   

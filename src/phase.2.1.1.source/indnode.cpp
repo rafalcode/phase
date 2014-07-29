@@ -24,18 +24,18 @@ int CIndividual::counts = 0;
 
 // Default constructor
 CIndividual::CIndividual ( string loci_type ) : 
-    phase   ( loci_type.size() ),
-    recom (0),
-    missing ( loci_type.size() ),
-    notmissing_list ( 0 ),
-    unknown ( 0 ),
-    known   ( 0 ),
     phenotype(2,Haplotype(loci_type)),
     orig_phenotype(2,vector<int>(loci_type.size())),
     saved_hap(2,vector<int>(loci_type.size())),
     Z(2,vector<int>(loci_type.size())),
     AlleleCount(2,vector< vector<float> > (loci_type.size(), vector<float> ())),
-    PhaseCount(loci_type.size(), vector<float>(2, 1.0) )
+    PhaseCount(loci_type.size(), vector<float>(2, 1.0)),
+    phase(loci_type.size()),
+    missing(loci_type.size()),
+    recom(0),
+    notmissing_list(0),
+    unknown(0),
+    known(0)
 { 
   NIND ++;
 
@@ -71,25 +71,25 @@ CIndividual::CIndividual ( string loci_type ) :
 
 CIndividual::CIndividual( const CIndividual & C ) :
   id (C.id),
-  phase   ( C.phase ),
-  recom (C.recom ),
-  missing ( C.missing ),
-  notmissing_list ( C.notmissing_list ),
-  unknown ( C.unknown ),
-  known   ( C.known ),   
   phenotype ( C.phenotype ),
   orig_phenotype (C.orig_phenotype),
   saved_hap (C.saved_hap),
   Z (C.Z),
+  AlleleCount (C.AlleleCount),
   PhaseCount (C.PhaseCount),
-  AlleleCount (C.AlleleCount)
+  phase   ( C.phase ),
+  missing ( C.missing ),
+  recom (C.recom ),
+  notmissing_list ( C.notmissing_list ),
+  unknown ( C.unknown ),
+  known   ( C.known )
 { 
   NIND ++;
 #if DEBUG == 5
     cout << "Copy constructor called ... ";
     cout.flush();
 #endif // DEBUG
-    int nloci = C.phase.size();
+    // int nloci = C.phase.size(); //  unused.
 
 #if DEBUG == 5
     cout << "OK" << endl;
@@ -99,19 +99,18 @@ CIndividual::CIndividual( const CIndividual & C ) :
 
 CIndividual::CIndividual( const CIndividual & C, int firstlocus, int lastlocus ) :
   id (C.id),
-  phase   ( C.phase.begin()+firstlocus, C.phase.begin()+lastlocus ), 
-  recom (0),
-  missing (C.missing.begin()+firstlocus, C.missing.begin()+lastlocus),
-  notmissing_list(0),
-  unknown(0),
-  known(0),
   phenotype(2),
   orig_phenotype(2,vector<int>(lastlocus - firstlocus)),
   saved_hap(2,vector<int>(lastlocus - firstlocus)),
   Z(2,vector<int>(lastlocus - firstlocus)),
   AlleleCount(2,vector< vector<float> > (lastlocus - firstlocus, vector<float> ())),
-  PhaseCount(lastlocus - firstlocus, vector<float>(2, 1.0) )
-  
+  PhaseCount(lastlocus - firstlocus, vector<float>(2, 1.0) ),
+  phase(C.phase.begin()+firstlocus, C.phase.begin()+lastlocus ), 
+  missing(C.missing.begin()+firstlocus, C.missing.begin()+lastlocus),
+  recom(0),
+  notmissing_list(0),
+  unknown(0),
+  known(0)
 { 
   NIND ++;
   phenotype[0] = Haplotype(C.phenotype[0],firstlocus,lastlocus);
@@ -172,21 +171,21 @@ CIndividual::CIndividual( const CIndividual & C, int firstlocus, int lastlocus )
 }
 
 // construct individual from concatenation of two inds
-CIndividual::CIndividual( const CIndividual & C1,  const CIndividual & C2 ) :
-  id (C1.id),
-  phase   ( C1.phase ),
-  missing ( C1.missing ),
-  notmissing_list ( C1.notmissing_list ),
-  unknown ( C1.unknown ),
-  known   ( C1.known ),
-  recom (C1.recom),
-  phenotype ( C1.phenotype ),
+CIndividual::CIndividual(const CIndividual &C1, const CIndividual &C2) :
+  id(C1.id),
+  phenotype ( C1.phenotype),
   orig_phenotype(2,vector<int>(C1.phase.size()+C2.phase.size())),
   saved_hap(2,vector<int>(C1.phase.size()+C2.phase.size())),
   Z(2,vector<int>(C1.phase.size()+C2.phase.size())),
   AlleleCount(2,vector< vector<float> > (C1.phase.size()+C2.phase.size(), vector<float> ())),
-  PhaseCount(C1.phase.size()+C2.phase.size(), vector<float>(2, 1.0) )
-{ 
+  PhaseCount(C1.phase.size()+C2.phase.size(), vector<float>(2, 1.0) ),
+  phase   ( C1.phase ),
+  missing ( C1.missing ),
+  recom (C1.recom),
+  notmissing_list ( C1.notmissing_list ),
+  unknown ( C1.unknown ),
+  known   ( C1.known )
+{
   NIND ++;
   phase.insert(phase.end(),C2.phase.begin(),C2.phase.end());
   missing.insert(missing.end(),C2.missing.begin(),C2.missing.end()); 
@@ -228,7 +227,6 @@ CIndividual::CIndividual( const CIndividual & C1,  const CIndividual & C2 ) :
     Z[1][locus] = C2.Z[1][locus-offset];
   }
   
-  
   for(int c=0; c < 2; c++){
     for(int locus = 0; locus < offset; locus++){
       //int n_allele = (loci_type[locus] == 'S' ) ? 2 : KMAX;
@@ -246,15 +244,13 @@ CIndividual::CIndividual( const CIndividual & C1,  const CIndividual & C2 ) :
     }
   }
   
-
-  for(int locus=0; locus<offset; locus++){
+  for(int locus=0; locus<offset; locus++)
     for(int j=0; j < 2; j++)
       PhaseCount[locus][j]=C1.PhaseCount[locus][j];	
-  }
-  for(int locus=offset; locus<nloci; locus++){
+
+  for(int locus=offset; locus<nloci; locus++)
     for(int j=0; j < 2; j++)
       PhaseCount[locus][j]=C2.PhaseCount[locus-offset][j];	
-  }
 }
 
 
@@ -266,7 +262,7 @@ CIndividual::~CIndividual()
     cout.flush();
 #endif // DEBUG
  
-    int nloci = phase.size();
+    // int nloci = phase.size(); // unused.
     
     //cout << "DELETING IND nloci = " << nloci << "; NIND = " << NIND << endl;
 
@@ -918,9 +914,9 @@ double CIndividual::ObservedDataProbGivenParents(const Haplotype & h1, const Hap
 
 
 // transfer counts (allelecounts, phasecounts) from summary to individual
-void CIndividual::TransferCounts(Summary & sum)
+void CIndividual::TransferCounts(Summary &sum)
 {
-  int locus = 0;
+  unsigned locus = 0;
   for (vector< vector<double> >::iterator p1 = sum.flipprob.begin(); p1 !=sum.flipprob.end(); p1++){
     for(vector<double>::iterator p2 = (*p1).begin(); p2 != (*p1).end(); p2++){
       PhaseCount[locus][0] = 1-(*p2);
